@@ -1,10 +1,14 @@
 @import './colors.scss';
+@import './theme/dark.scss';
+@import './theme/light.scss';
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--lightgray);
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  background-color: var(--primary);
   height: 100vh;
   width: 100vw;
   padding: 0;
