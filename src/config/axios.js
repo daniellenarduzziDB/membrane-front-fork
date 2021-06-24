@@ -6,3 +6,13 @@ export const setAuthorizationHeader = token => {
     return config;
   });
 };
+
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL
+});
+
+export const request = {
+  post: (url, payload) => {
+    return api.post(url, payload);
+  }
+};

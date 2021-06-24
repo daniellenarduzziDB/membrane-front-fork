@@ -1,31 +1,48 @@
-.splashContainer {
+.splash {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 100vh;
+  background-image: url('../../assets/wave.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  color: var(--white);
 
-  .image {
-    width: 15rem;
-    margin: auto;
-    animation: zoom 2s infinite alternate;
-  }
-
-  .themeButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+  .appTitle {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    color: var(--text-color);
-  }
-}
+    font-weight: 500;
+    font-size: 22px;
+    top: 10%;
+    z-index: -1;
 
-@keyframes zoom {
-  0% {
-    transform: scale(0.9);
+    img {
+      margin-right: 4px;
+    }
   }
-  100% {
-    transform: scale(1.1);
+
+  .infoContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    background: var(--elevated);
+    bottom: 5%;
+    border-radius: 2rem;
+    padding: 1rem;
+    div {
+      margin: 0 2rem;
+      h5 {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        font-size: 12px;
+        color: var(--blue);
+      }
+    }
   }
 }

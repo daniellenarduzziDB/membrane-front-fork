@@ -1,0 +1,39 @@
+import { memo, useEffect, useState } from 'react';
+import classnames from 'classnames';
+import useDigitInput from 'react-digit-input';
+
+//styles
+import * as styles from './styles.module.scss';
+
+import { ONLY_NUMBERS } from '../../helpers/rejex';
+
+export default memo(function DigitCode({ digits = 0, onInputChange }) {
+  //bind styles
+  classnames.bind(styles);
+
+  const [value, onChange] = useState('');
+
+  const digitInput = useDigitInput({
+    acceptedCharacters: ONLY_NUMBERS,
+    length: digits,
+    value,
+    onChange
+  });
+
+  useEffect(() => {
+    onInputChange(digitInput, value);
+  }, [value]);
+
+  return (
+    <div className={styles.digitCode}>
+      <div className={styles.inputGroup}>
+        <input inputMode="decimal" autoFocus {...digitInput[0]} />
+        <input inputMode="decimal" {...digitInput[1]} />
+        <input inputMode="decimal" {...digitInput[2]} />
+        <input inputMode="decimal" {...digitInput[3]} />
+        <input inputMode="decimal" {...digitInput[4]} />
+        <input inputMode="decimal" {...digitInput[5]} />
+      </div>
+    </div>
+  );
+});

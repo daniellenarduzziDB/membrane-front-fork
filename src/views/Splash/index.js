@@ -1,58 +1,36 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { memo } from 'react';
+import classnames from 'classnames';
 
-//import actions
-import { setUserProfile } from '../../store/actions/userProfile';
-
-//import styles
+//styles
 import * as styles from './styles.module.scss';
 
-//import hoc
-import withTheme from '../../hoc/withTheme';
+import membraneLogo from '../../assets/logo_membrane.svg';
 
-//import components
-import FontAwesomeIcon, {
-  faSun,
-  faMoon
-} from '../../components/FontAwesomeIcon';
+import { APP_NAME } from '../../contants/app';
 
-//others
-import a1Logo from '../../assets/images/companies/logo_a1.svg';
+export default memo(function Splash({ children }) {
+  //bind styles
+  classnames.bind(styles);
 
-class Splash extends Component {
-  render() {
-    const { theme } = this.props;
-
-    return (
-      <div className={styles.splashContainer}>
-        <img
-          className={styles.image}
-          src={a1Logo}
-          alt="Company Accel One Logotype"
-        />
-
-        <button className={styles.themeButton} onClick={theme.toggleTheme}>
-          <FontAwesomeIcon
-            icon={theme.current === 'dark' ? faSun : faMoon}
-            size="2x"
-          />
-        </button>
+  return (
+    <div className={styles.splash}>
+      <div className={styles.appTitle}>
+        <img alt="membrane logo" src={membraneLogo} />
+        {APP_NAME}
       </div>
-    );
-  }
-}
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    userProfile: state.userProfile
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators({ setUserProfile }, dispatch)
-  };
-};
-
-export default withTheme(connect(mapStateToProps, mapDispatchToProps)(Splash));
+      {children}
+      <div className={styles.infoContainer}>
+        <div>
+          <h5>Contact Membrane Support</h5>
+          <a href="mailto:support@membrane.com">support@membrane.com</a>
+        </div>
+        <div>
+          <h5>Get the 2FA app</h5>
+          <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">
+            Google Authenticator
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+});

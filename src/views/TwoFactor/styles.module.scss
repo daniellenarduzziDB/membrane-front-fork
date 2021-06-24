@@ -1,0 +1,61 @@
+.twoFactorContainer {
+  margin: 5rem;
+  .digitCode {
+    height: fit-content;
+    width: fit-content;
+    box-sizing: border-box;
+    margin: auto;
+    border-radius: 2rem;
+    padding: 3rem;
+    background: var(--elevated);
+    margin-top: 3rem;
+    label {
+      font-size: 12px;
+      margin-left: 8px;
+    }
+
+    .primaryActions {
+      text-align: center;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+
+      button {
+        cursor: pointer;
+        border: none;
+        font-weight: bold;
+        padding: 0.75rem 1.75rem;
+        margin: 0 0.75rem;
+        border-radius: 8px;
+        color: var(--white);
+
+        &:first-child {
+          background: transparent;
+          box-shadow: inset 0px 0px 0px 2px var(--blue);
+        }
+        &:last-child {
+          background: var(--blue-violet);
+          box-shadow: 0px 24px 48px rgba(99, 60, 247, 0.15);
+        }
+      }
+    }
+
+    .secondaryActions {
+      display: flex;
+      justify-content: center;
+
+      button {
+        background: transparent;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+        color: var(--blue);
+      }
+    }
+  }
+}
+
+.inputValidation {
+  color: var(--error);
+}

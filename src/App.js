@@ -1,53 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-//import context
-import ThemeContext from './context/ThemeContext';
-
-//import lib
-import Utils from './lib/utils';
-
 //import views
-import Splash from './views/Splash';
+import SignIn from './views/SignIn';
+import TwoFactor from './views/TwoFactor';
+import Dashboard from './views/Dashboard';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      theme: 'dark'
-    };
-  }
+//context
+import { UserContextProvider } from './context/UserContext';
+import { NotificationContextProvider } from './context/NotificationContext';
 
-  componentDidMount = () => {
-    Utils.logAppVersion();
-  };
+//private route
+import PrivateRoute from './components/PrivateRoute';
 
-  toggleTheme = () => {
-    this.setState(
-      prevState => ({
-        theme: prevState.theme === 'dark' ? 'light' : 'dark'
-      }),
-      () => {
-        let htmlElement = document.body.parentElement;
-        htmlElement.dataset.theme = this.state.theme;
-      }
-    );
-  };
+//libs
+import './lib/event';
 
-  render() {
-    const { theme } = this.state;
-
-    return (
-      <React.Fragment>
-        <ThemeContext.Provider
-          value={{ current: theme, toggleTheme: this.toggleTheme }}>
+export default function App() {
+  return (
+    <React.Fragment>
+      <UserContextProvider>
+        <NotificationContextProvider>
           <Router>
             <Switch>
-              <Route exact path="/" component={Splash} />
+              <Route exact path="/sign-in" component={SignIn} />
+              <PrivateRoute exact path="/" />
+              <PrivateRoute exact path="/two-factor" component={TwoFactor} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
           </Router>
-        </ThemeContext.Provider>
-      </React.Fragment>
-    );
-  }
+        </NotificationContextProvider>
+      </UserContextProvider>
+    </React.Fragment>
+  );
 }

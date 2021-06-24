@@ -1,0 +1,32 @@
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  position: absolute;
+  color: var(--white);
+  font-weight: 500;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  left: calc((100% / 2) - 250px);
+  max-height: 80px;
+  width: 500px;
+  z-index: 99;
+
+  svg {
+    margin: 1rem;
+    font-size: 20px;
+  }
+}
+
+.info {
+  background: var(--info);
+}
+.error {
+  background: var(--error);
+}
+.warning {
+  background: var(--warning);
+}
+.success {
+  background: var(--success);
+}

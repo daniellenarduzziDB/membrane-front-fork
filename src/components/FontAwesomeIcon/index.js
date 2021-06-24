@@ -1,7 +1,29 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //icons
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSun,
+  faCog,
+  faEye,
+  faMoon,
+  faBell,
+  faEyeSlash,
+  faInfoCircle,
+  faTimesCircle,
+  faCheckCircle,
+  faExclamationCircle
+} from '@fortawesome/free-solid-svg-icons';
 
 export default FontAwesomeIcon;
-export { faSun, faMoon };
+export {
+  faSun,
+  faCog,
+  faEye,
+  faMoon,
+  faBell,
+  faEyeSlash,
+  faInfoCircle,
+  faTimesCircle,
+  faCheckCircle,
+  faExclamationCircle
+};

@@ -1,4 +1,12 @@
 :root {
-  --dark-gray: #22252b;
-  --light-gray: #e0e0e0;
+  --base: #121212;
+  --elevated: #1e1e1e;
+  --light: #2e2e2e;
+  --white: #ffffff;
+  --blue: #0f60ff;
+  --blue-violet: linear-gradient(90deg, #0f60ff 0%, #8743ff 100%);
+  --info: #00bcd4;
+  --error: #f44336;
+  --warning: #ff9800;
+  --success: #4caf50;
 }

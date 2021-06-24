@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--elevated);
+  color: var(--white);
+  padding: 0 32px;
+  width: calc(100% - 64px);
+  height: 72px;
+
+  .logotype {
+    a {
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+      font-size: var(--text-md);
+      font-weight: 500;
+    }
+  }
+
+  .profile {
+    svg {
+      cursor: pointer;
+      margin: 0 8px;
+    }
+  }
+}
