@@ -17,10 +17,5 @@ export const setAuthorizationHeader = token => {
 export const request = {
   post: (url, payload) => {
     return api.post(url, payload);
-  },
-  twofa: (url, payload, token) => {
-    return api.post(url, payload, {
-      headers: { Authorization: 'bearear ' + token }
-    });
   }
 };
