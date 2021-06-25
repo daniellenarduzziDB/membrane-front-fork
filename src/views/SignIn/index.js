@@ -51,7 +51,7 @@ export default memo(function SignIn(props) {
           <div className={styles.signInForm}>
             <Form
               customError={customError}
-              fields={[
+              items={[
                 {
                   label: 'Email',
                   name: 'email',
@@ -81,7 +81,7 @@ export default memo(function SignIn(props) {
                   }
                 }
               ]}
-              buttons={[
+              actions={[
                 {
                   type: 'primary',
                   actionType: 'submit',
@@ -89,13 +89,13 @@ export default memo(function SignIn(props) {
                   onClick: onSubmit
                 },
                 {
-                  type: 'secondary',
+                  type: 'tertiary',
                   actionType: 'custom',
                   label: 'Forgot Password',
                   linkTo: '/forgot-password'
                 },
                 {
-                  type: 'secondary',
+                  type: 'tertiary',
                   actionType: 'custom',
                   label: 'Sign Up',
                   linkTo: '/sign-up'

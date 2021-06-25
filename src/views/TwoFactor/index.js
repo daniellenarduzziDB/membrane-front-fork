@@ -24,14 +24,18 @@ export default memo(function TwoFactor(props) {
   //bind styles
   classnames.bind(styles);
 
-  const onInputChange = (digitInput, value) => {
+  const onDigitCodeChange = (digitInput, value) => {
     setCodeValue(value);
     setCodeComplete(!digitInput.filter(digit => !digit.value).length);
   };
 
   const onSignIn = () => {
-    twoFactorSignIn(codeValue)
-      .then(() => props.history.push('/dashboard'))
+    const payload = { code: codeValue };
+
+    twoFactorSignIn(payload)
+      .then(() => {
+        props.history.push('/dashboard');
+      })
       .catch(error => setError(error?.message));
   };
 
@@ -58,9 +62,11 @@ export default memo(function TwoFactor(props) {
         </label>
         <div className={styles.digitCode}>
           <label>Enter your 6-digit code</label>
-          <DigitCode digits={6} onInputChange={onInputChange} />
+          <DigitCode digits={6} onDigitCodeChange={onDigitCodeChange} />
+
           <label className={styles.inputValidation}>{error}</label>
-          <div className={styles.primaryActions}>
+
+          <div className={styles.primaryAction}>
             <button onClick={onCancel}>Cancel</button>
             <button
               className={classnames({ disabled: !codeComplete })}
@@ -69,7 +75,7 @@ export default memo(function TwoFactor(props) {
             </button>
           </div>
 
-          <div className={styles.secondaryActions}>
+          <div className={styles.tertiaryAction}>
             <button onClick={onRequestNewCode}>Send new code</button>
           </div>
         </div>

@@ -38,9 +38,13 @@ export default function useUser() {
   }, [setJWT]);
 
   const twoFactorSignIn = useCallback(payload => {
-    return loginTwoFactor(payload).catch(error => {
-      throw new Error(Utils.parseApiError(error));
-    });
+    return loginTwoFactor(payload)
+      .then(response => {
+        console.log('response: ', response, response.data);
+      })
+      .catch(error => {
+        throw new Error(Utils.parseApiError(error));
+      });
   }, []);
 
   const requestNewSecurityCode = useCallback(() => {

@@ -1,6 +1,10 @@
 .field {
   margin-top: 4px;
   margin-bottom: 8px;
+  label {
+    font-size: 12px;
+    font-weight: 600;
+  }
   .fieldInput {
     display: flex;
     flex-direction: row;
@@ -42,10 +46,23 @@
   }
 }
 
-.primaryActions {
+.actionGroup {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  width: 100%;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  flex-direction: row;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  text-align: center;
+}
+
+.primaryAction {
+  button,
   input[type='submit'] {
     cursor: pointer;
     border: none;
@@ -58,11 +75,27 @@
   }
 }
 
-.secondaryActions {
+.secondaryAction {
+  button {
+    background: transparent;
+    box-shadow: inset 0px 0px 0px 2px var(--blue);
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    color: var(--white);
+  }
+}
+
+.tertiaryAction {
   display: flex;
   justify-content: space-between;
   a,
   button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
     text-decoration: none;
     font-weight: bold;
     font-size: 13px;

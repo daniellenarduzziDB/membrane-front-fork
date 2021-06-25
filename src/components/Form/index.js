@@ -9,6 +9,7 @@ import _ from 'lodash';
 import * as styles from './styles.module.scss';
 
 //components
+import DigitCode from '../DigitCode';
 import FontAwesomeIcon, {
   faEye,
   faEyeSlash
@@ -38,7 +39,7 @@ export default memo(function Form(props) {
   }, [errors, props.customError]);
 
   const onSubmit = (data, e) => {
-    let submitAction = _.find(props.buttons, { actionType: 'submit' });
+    let submitAction = _.find(props.actions, { actionType: 'submit' });
     if (submitAction) submitAction.onClick(data);
   };
 
@@ -48,7 +49,7 @@ export default memo(function Form(props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {props.fields.map(field => {
+      {props.items.map(field => {
         const { label, name, type, placeholder, validation } = field;
 
         return (
@@ -83,24 +84,34 @@ export default memo(function Form(props) {
         );
       })}
 
-      <div className={styles.primaryActions}>
-        {_.filter(props.buttons, { type: 'primary' }).map(button =>
-          button.actionType === 'submit' ? (
-            <input
-              key={shortid.generate()}
-              type="submit"
-              value={button.label}
-            />
-          ) : (
+      <div className={styles.actionGroup}>
+        <div className={styles.primaryAction}>
+          {_.filter(props.actions, { type: 'primary' }).map(button =>
+            button.actionType === 'submit' ? (
+              <input
+                key={shortid.generate()}
+                type="submit"
+                value={button.label}
+              />
+            ) : (
+              <button key={shortid.generate()} onClick={button.onClick}>
+                {button.label}
+              </button>
+            )
+          )}
+        </div>
+
+        <div className={styles.secondaryAction}>
+          {_.filter(props.actions, { type: 'secondary' }).map(button => (
             <button key={shortid.generate()} onClick={button.onClick}>
               {button.label}
             </button>
-          )
-        )}
+          ))}
+        </div>
       </div>
 
-      <div className={styles.secondaryActions}>
-        {_.filter(props.buttons, { type: 'secondary' }).map(button =>
+      <div className={styles.tertiaryAction}>
+        {_.filter(props.actions, { type: 'tertiary' }).map(button =>
           button.linkTo ? (
             <a key={shortid.generate()} href={button.linkTo}>
               {button.label}

@@ -7,7 +7,7 @@ import * as styles from './styles.module.scss';
 
 import { ONLY_NUMBERS } from '../../helpers/rejex';
 
-export default memo(function DigitCode({ digits = 0, onInputChange }) {
+export default memo(function DigitCode({ digits = 0, onDigitCodeChange }) {
   //bind styles
   classnames.bind(styles);
 
@@ -21,7 +21,7 @@ export default memo(function DigitCode({ digits = 0, onInputChange }) {
   });
 
   useEffect(() => {
-    onInputChange(digitInput, value);
+    onDigitCodeChange(digitInput, value);
   }, [value]);
 
   return (
