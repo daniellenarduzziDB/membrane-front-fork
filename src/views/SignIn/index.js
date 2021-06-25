@@ -9,7 +9,7 @@ import * as styles from './styles.module.scss';
 import useUser from '../../hooks/useUser';
 
 //components
-import Splash from '../Splash';
+import Splash from '../../components/Splash';
 import Form from '../../components/Form';
 
 //rejex validation
@@ -90,13 +90,11 @@ export default memo(function SignIn(props) {
                 },
                 {
                   type: 'tertiary',
-                  actionType: 'custom',
                   label: 'Forgot Password',
                   linkTo: '/forgot-password'
                 },
                 {
                   type: 'tertiary',
-                  actionType: 'custom',
                   label: 'Sign Up',
                   linkTo: '/sign-up'
                 }
