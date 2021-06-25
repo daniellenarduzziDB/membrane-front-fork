@@ -47,6 +47,7 @@ export default memo(function Form(props) {
   };
 
   const renderDefaultComponent = field => {
+    // if (classes) classnames.bind(classes);
     const { name, type, placeholder, validation } = field;
 
     return (
@@ -79,12 +80,14 @@ export default memo(function Form(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       {props.items.map((field, index) => {
-        const { label, name, type } = field;
+        const { label, name, type, size } = field;
 
         return (
-          <div key={index} className={styles.field}>
+          <div
+            key={index}
+            className={classnames(styles.field, styles[size ?? 'col-12'])}>
             <label>
               {label}
               {type === 'custom'

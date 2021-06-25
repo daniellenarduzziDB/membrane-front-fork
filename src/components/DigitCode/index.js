@@ -5,7 +5,7 @@ import useDigitInput from 'react-digit-input';
 //styles
 import * as styles from './styles.module.scss';
 
-import { ONLY_NUMBERS } from '../../helpers/rejex';
+import * as regex from '../../helpers/regex';
 
 export default memo(function DigitCode({ digits = 0, onDigitCodeChange }) {
   //bind styles
@@ -14,7 +14,7 @@ export default memo(function DigitCode({ digits = 0, onDigitCodeChange }) {
   const [value, onChange] = useState('');
 
   const digitInput = useDigitInput({
-    acceptedCharacters: ONLY_NUMBERS,
+    acceptedCharacters: regex.ONLY_NUMBERS,
     length: digits,
     value,
     onChange

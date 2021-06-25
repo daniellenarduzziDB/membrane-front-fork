@@ -1,6 +1,5 @@
-.twoFactorContainer {
-  margin: 5rem;
-  .twoFactorForm {
+.signUpContainer {
+  .signUpForm {
     height: fit-content;
     width: fit-content;
     box-sizing: border-box;
@@ -8,7 +7,8 @@
     border-radius: 2rem;
     padding: 3rem;
     margin-top: 3rem;
+    min-width: 400px;
+    max-width: 600px;
     background: var(--elevated);
-    max-width: 400px;
   }
 }

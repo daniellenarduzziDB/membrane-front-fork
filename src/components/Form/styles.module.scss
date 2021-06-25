@@ -1,3 +1,9 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .field {
   margin-top: 4px;
   margin-bottom: 8px;
@@ -92,6 +98,7 @@
   display: flex;
   justify-content: space-between;
   margin: 0.75rem 0;
+  width: 100%;
   a,
   button {
     background: transparent;
@@ -101,5 +108,17 @@
     font-weight: bold;
     font-size: 13px;
     color: var(--blue);
+  }
+}
+
+//defining sizes in columns
+//# of columns: 12
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    @if $i == 12 {
+      width: 100%;
+    } @else {
+      width: ($i * 8%);
+    }
   }
 }
