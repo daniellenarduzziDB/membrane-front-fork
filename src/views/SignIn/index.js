@@ -9,11 +9,11 @@ import * as styles from './styles.module.scss';
 import useUser from '../../hooks/useUser';
 
 //components
-import Splash from '../../components/Splash';
 import Form from '../../components/Form';
+import Splash from '../../components/Splash';
 
-//rejex validation
-import { VALID_EMAIL } from '../../helpers/rejex';
+//regex validation
+import * as regex from '../../helpers/regex';
 
 export default memo(function SignIn(props) {
   //hook user
@@ -63,7 +63,7 @@ export default memo(function SignIn(props) {
                       message: 'This field is required'
                     },
                     pattern: {
-                      value: VALID_EMAIL,
+                      value: regex.VALID_EMAIL,
                       message: 'Invalid email format'
                     }
                   }

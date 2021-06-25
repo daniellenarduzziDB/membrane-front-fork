@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 //import views
 import SignIn from './views/SignIn';
+import SignUp from './views/SignUp';
 import TwoFactor from './views/TwoFactor';
 import Dashboard from './views/Dashboard';
 
@@ -25,6 +26,7 @@ export default function App() {
             <Switch>
               <Route exact path="/sign-in" component={SignIn} />
               <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/sign-up" component={SignUp} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/two-factor" component={TwoFactor} />
             </Switch>
