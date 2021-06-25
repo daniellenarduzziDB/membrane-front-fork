@@ -15,27 +15,31 @@ const ITEMS_PER_PAGE_OPTIONS = [10,20,30,40,50];
 const TOTAL_PAGES_SHOWN = 5;
 
 export default memo(function Pagination({
-  itemsPerPage,
-  itemsPerPageOptions,
   currentPageNumber,
   hideItemsPerPage,
+  isFetching,
+  itemsPerPage,
+  itemsPerPageOptions,
   onItemsPerPageChange,
   onSetPage,
-  total,
+  totalItems,
   totalPagesShown,
 }) {
   //bind styles
-  classnames.bind(styles);
+  const cx = classnames.bind(styles);
   
   const renderPages = () => {
-    const pagesLength = Math.ceil(total/itemsPerPage);
+    const pagesLength = Math.ceil(totalItems/itemsPerPage);
     let pagesButtons = [];
 
     for (let i = 1; i <= pagesLength; i++) {
+      let className = classnames(styles.pageNumber, {
+        [styles.active]: currentPageNumber === i
+      });
       pagesButtons.push(
         <div
           key={i}
-          className={`page-number ${currentPageNumber === i ? 'active': ''}`}
+          className={className}
           onClick={(e) => { onSetPage(i) }} >
           {i}
         </div>
@@ -63,17 +67,17 @@ export default memo(function Pagination({
     const showNext = currentPageNumber < pagesLength;
 
     return (
-      <div className="pagination-wrapper">
+      <div className={styles.paginationWrapper}>
         {
           showPrev &&
-          <div className="pagination-link"
+          <div className={styles.paginationBtn}
           onClick={(e) => { onSetPage(1) }} >
             First
           </div>
         }
         {
           showPrev &&
-          <div className="pagination-link"
+          <div className={styles.paginationBtn}
           onClick={(e) => { onSetPage(Math.max(currentPageNumber - 1, 1)) }} >
             <FontAwesomeIcon icon={arrowLeft} />
           </div>
@@ -81,14 +85,14 @@ export default memo(function Pagination({
         {pagesButtons.slice(firstIdx, lastIdx)}
         {
           showNext &&
-          <div className="pagination-link"
+          <div className={styles.paginationBtn}
           onClick={(e) => { onSetPage(Math.min(currentPageNumber + 1, pagesLength)) }} >
             <FontAwesomeIcon icon={arrowRight} />
           </div>
         }
         {
           showNext &&
-          <div className="pagination-link"
+          <div className={styles.paginationBtn}
           onClick={(e) => { onSetPage(pagesLength) }} >
             Last
           </div>
@@ -100,17 +104,17 @@ export default memo(function Pagination({
   const renderItemsPerPage = () => {
     const options = itemsPerPageOptions || ITEMS_PER_PAGE_OPTIONS;
     const firstElement = ((currentPageNumber - 1) * itemsPerPage) + 1;
-    const lastElement = Math.min(currentPageNumber * itemsPerPage, total);
-    let selectedLabel = `${firstElement}-${lastElement} of ${total}`;
-    if(total === 0){
+    const lastElement = Math.min(currentPageNumber * itemsPerPage, totalItems);
+    let selectedLabel = `${firstElement}-${lastElement} of ${totalItems}`;
+    if(totalItems === 0){
       selectedLabel = '0 of 0';
     }
 
     return (
-      <div className="items-per-page">
-        <div className="label">Show</div>
-        <div className="items-per-page-selector">
-          <div className="selected-label">{selectedLabel}</div>
+      <div className={styles.itemsPerPage}>
+        <div className={styles.label}>Show</div>
+        <div className={styles.itemsPerPageSelector}>
+          <div className={styles.selectedLabel}>{selectedLabel}</div>
           <FontAwesomeIcon icon={arrowDown} />
           <select onChange={(e) => { onItemsPerPageChange(e.target.value) }} value={itemsPerPage}>
             { options.map((opt, idx) => <option key={idx} value={opt} >{opt}</option>) }
@@ -122,9 +126,9 @@ export default memo(function Pagination({
 
   return (
     !isFetching &&
-    <div className='pagination'>
-      { total > itemsPerPage && renderPages() }
-      { !hideItemsPerPage && total > 0 && renderItemsPerPage() }
+    <div className={styles.pagination}>
+      { totalItems > itemsPerPage && renderPages() }
+      { !hideItemsPerPage && totalItems > 0 && renderItemsPerPage() }
     </div>
   );
 });
