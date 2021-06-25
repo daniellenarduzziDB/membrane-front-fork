@@ -1,24 +1,32 @@
 .digitCode {
   display: flex;
-  .inputGroup input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    caret-color: transparent;
-    text-align: center;
-    user-select: none;
-    background-color: var(--light);
-    margin: 8px;
-    height: 40px;
-    width: 40px;
-    border-radius: 10px;
-    color: var(--white);
-    &:focus {
-      background: var(--primary);
-    }
-    &::selection {
-      color: none;
-      background: none;
+  .inputGroup {
+    input {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      caret-color: transparent;
+      text-align: center;
+      user-select: none;
+      background-color: var(--light);
+      margin: 8px 4px;
+      border-radius: 10px;
+      height: 40px;
+      width: 40px;
+      color: var(--white);
+      &:first-child {
+        margin-left: 0 !important;
+      }
+      &:last-child {
+        margin-right: 0 !important;
+      }
+      &:focus {
+        background: var(--primary);
+      }
+      &::selection {
+        color: none;
+        background: none;
+      }
     }
   }
 }

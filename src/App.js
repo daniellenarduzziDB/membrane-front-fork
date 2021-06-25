@@ -26,7 +26,7 @@ export default function App() {
               <Route exact path="/sign-in" component={SignIn} />
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/two-factor" component={TwoFactor} />
+              <Route exact path="/two-factor" component={TwoFactor} />
             </Switch>
           </Router>
         </NotificationContextProvider>

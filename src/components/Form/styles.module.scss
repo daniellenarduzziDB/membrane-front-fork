@@ -58,8 +58,7 @@
 .secondaryAction {
   display: inline-flex;
   flex-direction: row;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin: 0.75rem;
 }
 
 .primaryAction {
@@ -92,6 +91,7 @@
 .tertiaryAction {
   display: flex;
   justify-content: space-between;
+  margin: 0.75rem 0;
   a,
   button {
     background: transparent;

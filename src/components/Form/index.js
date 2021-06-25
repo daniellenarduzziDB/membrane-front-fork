@@ -46,35 +46,51 @@ export default memo(function Form(props) {
     setPasswordVisibility(!passwordVisibility);
   };
 
+  const renderDefaultComponent = field => {
+    const { name, type, placeholder, validation } = field;
+
+    return (
+      <div className={styles.fieldInput}>
+        <input
+          name={name}
+          type={
+            type !== 'password'
+              ? type
+              : passwordVisibility
+              ? 'password'
+              : 'text'
+          }
+          placeholder={placeholder}
+          {...register(name, validation)}
+        />
+        {type === 'password' && (
+          <FontAwesomeIcon
+            icon={passwordVisibility ? faEye : faEyeSlash}
+            onClick={handlePasswordVisibility}
+          />
+        )}
+      </div>
+    );
+  };
+
+  const renderCustomComponent = field => {
+    const { customComponent } = field;
+    return <div>{customComponent()}</div>;
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {props.items.map((field, index) => {
-        const { label, name, type, placeholder, validation } = field;
+        const { label, name, type } = field;
 
         return (
           <div key={index} className={styles.field}>
             <label>
               {label}
-              <div className={styles.fieldInput}>
-                <input
-                  name={name}
-                  type={
-                    type !== 'password'
-                      ? type
-                      : passwordVisibility
-                      ? 'password'
-                      : 'text'
-                  }
-                  placeholder={placeholder}
-                  {...register(name, validation)}
-                />
-                {type === 'password' && (
-                  <FontAwesomeIcon
-                    icon={passwordVisibility ? faEye : faEyeSlash}
-                    onClick={handlePasswordVisibility}
-                  />
-                )}
-              </div>
+              {type === 'custom'
+                ? renderCustomComponent(field)
+                : renderDefaultComponent(field)}
+
               <div className={styles.fieldValidation}>
                 {errors[name] && <p>{errors[name].message}</p>}
               </div>
@@ -84,14 +100,45 @@ export default memo(function Form(props) {
       })}
 
       <div className={styles.actionGroup}>
-        <div className={styles.primaryAction}>
-          {_.filter(props.actions, { type: 'primary' }).map(button =>
-            button.actionType === 'submit' ? (
-              <input
-                key={shortid.generate()}
-                type="submit"
-                value={button.label}
-              />
+        {!!_.filter(props.actions, { type: 'primary' }).length && (
+          <div className={styles.primaryAction}>
+            {_.filter(props.actions, { type: 'primary' }).map(button =>
+              button.actionType === 'submit' ? (
+                <input
+                  key={shortid.generate()}
+                  type="submit"
+                  value={button.label}
+                />
+              ) : (
+                <button
+                  key={shortid.generate()}
+                  className={classnames({ disabled: button.disabled })}
+                  onClick={button.onClick}>
+                  {button.label}
+                </button>
+              )
+            )}
+          </div>
+        )}
+
+        {!!_.filter(props.actions, { type: 'secondary' }).length && (
+          <div className={styles.secondaryAction}>
+            {_.filter(props.actions, { type: 'secondary' }).map(button => (
+              <button key={shortid.generate()} onClick={button.onClick}>
+                {button.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {!!_.filter(props.actions, { type: 'tertiary' }).length && (
+        <div className={styles.tertiaryAction}>
+          {_.filter(props.actions, { type: 'tertiary' }).map(button =>
+            button.linkTo ? (
+              <a key={shortid.generate()} href={button.linkTo}>
+                {button.label}
+              </a>
             ) : (
               <button key={shortid.generate()} onClick={button.onClick}>
                 {button.label}
@@ -99,29 +146,7 @@ export default memo(function Form(props) {
             )
           )}
         </div>
-
-        <div className={styles.secondaryAction}>
-          {_.filter(props.actions, { type: 'secondary' }).map(button => (
-            <button key={shortid.generate()} onClick={button.onClick}>
-              {button.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className={styles.tertiaryAction}>
-        {_.filter(props.actions, { type: 'tertiary' }).map(button =>
-          button.linkTo ? (
-            <a key={shortid.generate()} href={button.linkTo}>
-              {button.label}
-            </a>
-          ) : (
-            <button key={shortid.generate()} onClick={button.onClick}>
-              {button.label}
-            </button>
-          )
-        )}
-      </div>
+      )}
     </form>
   );
 });

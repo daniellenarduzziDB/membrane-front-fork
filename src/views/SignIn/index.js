@@ -90,13 +90,11 @@ export default memo(function SignIn(props) {
                 },
                 {
                   type: 'tertiary',
-                  actionType: 'custom',
                   label: 'Forgot Password',
                   linkTo: '/forgot-password'
                 },
                 {
                   type: 'tertiary',
-                  actionType: 'custom',
                   label: 'Sign Up',
                   linkTo: '/sign-up'
                 }

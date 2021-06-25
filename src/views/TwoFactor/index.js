@@ -8,6 +8,7 @@ import * as styles from './styles.module.scss';
 import useUser from '../../hooks/useUser';
 
 //components
+import Form from '../../components/Form';
 import Splash from '../../components/Splash';
 import DigitCode from '../../components/DigitCode';
 
@@ -17,17 +18,12 @@ export default memo(function TwoFactor(props) {
     useUser();
 
   //states
+  const [error, setError] = useState('');
   const [codeValue, setCodeValue] = useState('');
   const [codeComplete, setCodeComplete] = useState(false);
-  const [error, setError] = useState('');
 
   //bind styles
   classnames.bind(styles);
-
-  const onDigitCodeChange = (digitInput, value) => {
-    setCodeValue(value);
-    setCodeComplete(!digitInput.filter(digit => !digit.value).length);
-  };
 
   const onSignIn = () => {
     const payload = { code: codeValue };
@@ -36,7 +32,13 @@ export default memo(function TwoFactor(props) {
       .then(() => {
         props.history.push('/dashboard');
       })
-      .catch(error => setError(error?.message));
+      .catch(error =>
+        setError({
+          field: 'digit',
+          type: 'custom',
+          message: error?.message
+        })
+      );
   };
 
   const onCancel = () => {
@@ -47,7 +49,18 @@ export default memo(function TwoFactor(props) {
   const onRequestNewCode = () => {
     setError('');
     setCodeComplete(false);
-    requestNewSecurityCode().catch(error => setError(error?.message));
+    requestNewSecurityCode().catch(error =>
+      setError({
+        field: 'digit',
+        type: 'custom',
+        message: error?.message
+      })
+    );
+  };
+
+  const onDigitCodeChange = (digitInput, value) => {
+    setCodeValue(value);
+    setCodeComplete(!digitInput.filter(digit => !digit.value).length);
   };
 
   return (
@@ -60,24 +73,44 @@ export default memo(function TwoFactor(props) {
           {twoFactorAuth?.clue}&nbsp;
           {twoFactorAuth?.type === 'SMS' ? 'phone' : 'email account'}.
         </label>
-        <div className={styles.digitCode}>
-          <label>Enter your 6-digit code</label>
-          <DigitCode digits={6} onDigitCodeChange={onDigitCodeChange} />
 
-          <label className={styles.inputValidation}>{error}</label>
-
-          <div className={styles.primaryAction}>
-            <button onClick={onCancel}>Cancel</button>
-            <button
-              className={classnames({ disabled: !codeComplete })}
-              onClick={onSignIn}>
-              Sign In
-            </button>
-          </div>
-
-          <div className={styles.tertiaryAction}>
-            <button onClick={onRequestNewCode}>Send new code</button>
-          </div>
+        <div className={styles.twoFactorForm}>
+          <Form
+            customError={error}
+            items={[
+              {
+                label: 'Enter your 6-digit code',
+                name: 'digit',
+                type: 'custom',
+                customComponent: () => {
+                  return (
+                    <DigitCode
+                      digits={6}
+                      onDigitCodeChange={onDigitCodeChange}
+                    />
+                  );
+                }
+              }
+            ]}
+            actions={[
+              {
+                type: 'primary',
+                label: 'Sign In',
+                disabled: !codeComplete,
+                onClick: onSignIn
+              },
+              {
+                type: 'secondary',
+                label: 'Cancel',
+                onClick: onCancel
+              },
+              {
+                type: 'tertiary',
+                label: 'Send new code',
+                onClick: onRequestNewCode
+              }
+            ]}
+          />
         </div>
       </div>
     </Splash>
