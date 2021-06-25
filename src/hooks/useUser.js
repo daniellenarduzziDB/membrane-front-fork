@@ -27,7 +27,7 @@ export default function useUser() {
           throw new Error(Utils.parseApiError(error));
         });
     },
-    [setJWT, setTwoFactorAuth]
+    [setTwoFactorAuth]
   );
 
   const singOut = useCallback(() => {
@@ -35,16 +35,19 @@ export default function useUser() {
     setJWT(null);
   }, [setJWT]);
 
-  const twoFactorSignIn = useCallback(payload => {
-    return loginTwoFactor(payload)
-      .then(response => {
-        setJWT(response);
-        sessionStorage.setItem('auth-token', response);
-      })
-      .catch(error => {
-        throw new Error(Utils.parseApiError(error));
-      });
-  }, []);
+  const twoFactorSignIn = useCallback(
+    payload => {
+      return loginTwoFactor(payload)
+        .then(response => {
+          setJWT(response);
+          sessionStorage.setItem('auth-token', response);
+        })
+        .catch(error => {
+          throw new Error(Utils.parseApiError(error));
+        });
+    },
+    [setJWT]
+  );
 
   const requestNewSecurityCode = useCallback(() => {
     return requestNewCode().catch(error => {

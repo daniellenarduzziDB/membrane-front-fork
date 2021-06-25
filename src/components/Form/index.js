@@ -9,7 +9,6 @@ import _ from 'lodash';
 import * as styles from './styles.module.scss';
 
 //components
-import DigitCode from '../DigitCode';
 import FontAwesomeIcon, {
   faEye,
   faEyeSlash
@@ -49,11 +48,11 @@ export default memo(function Form(props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {props.items.map(field => {
+      {props.items.map((field, index) => {
         const { label, name, type, placeholder, validation } = field;
 
         return (
-          <div key={shortid.generate()} className={styles.field}>
+          <div key={index} className={styles.field}>
             <label>
               {label}
               <div className={styles.fieldInput}>

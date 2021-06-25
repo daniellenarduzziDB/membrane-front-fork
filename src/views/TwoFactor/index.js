@@ -8,7 +8,7 @@ import * as styles from './styles.module.scss';
 import useUser from '../../hooks/useUser';
 
 //components
-import Splash from '../Splash';
+import Splash from '../../components/Splash';
 import DigitCode from '../../components/DigitCode';
 
 export default memo(function TwoFactor(props) {

@@ -3,7 +3,7 @@
   margin-bottom: 8px;
   label {
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
   }
   .fieldInput {
     display: flex;
@@ -11,6 +11,7 @@
     align-items: center;
     background: var(--light);
     padding: 0.75rem;
+    margin-top: 4px;
     border-radius: 8px;
     input {
       border: none;

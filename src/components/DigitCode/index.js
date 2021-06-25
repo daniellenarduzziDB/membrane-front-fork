@@ -22,6 +22,7 @@ export default memo(function DigitCode({ digits = 0, onDigitCodeChange }) {
 
   useEffect(() => {
     onDigitCodeChange(digitInput, value);
+    // eslint-disable-next-line
   }, [value]);
 
   return (

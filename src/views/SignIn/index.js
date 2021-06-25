@@ -9,7 +9,7 @@ import * as styles from './styles.module.scss';
 import useUser from '../../hooks/useUser';
 
 //components
-import Splash from '../Splash';
+import Splash from '../../components/Splash';
 import Form from '../../components/Form';
 
 //rejex validation
