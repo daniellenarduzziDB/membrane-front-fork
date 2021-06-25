@@ -21,6 +21,10 @@
       margin: 0 5px;
       width: 40px;
 
+      &:first-child {
+        margin-left: 0;
+      }
+
       svg {
         font-size: 10px;
       }
