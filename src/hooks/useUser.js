@@ -38,10 +38,8 @@ export default function useUser() {
   const twoFactorSignIn = useCallback(payload => {
     return loginTwoFactor(payload)
       .then(response => {
-        const { data } = response;
-
-        setJWT(data);
-        sessionStorage.setItem('auth-token', data);
+        setJWT(response);
+        sessionStorage.setItem('auth-token', response);
       })
       .catch(error => {
         throw new Error(Utils.parseApiError(error));

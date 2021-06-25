@@ -8,13 +8,16 @@ header {
   width: calc(100% - 64px);
   height: 72px;
 
-  .logotype {
+  .appTitle {
     a {
       text-transform: uppercase;
       text-decoration: none;
       color: var(--white);
-      font-size: var(--text-md);
+      font-size: 22px;
       font-weight: 500;
+    }
+    img {
+      margin-right: 4px;
     }
   }
 

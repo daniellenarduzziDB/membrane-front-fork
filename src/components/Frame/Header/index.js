@@ -12,6 +12,8 @@ import { APP_NAME } from '../../../contants/app';
 import NavBar from '../../NavBar';
 import FontAwesomeIcon, { faBell, faCog } from '../../FontAwesomeIcon';
 
+import membraneLogo from '../../../assets/logo_membrane.svg';
+
 function Header() {
   //bind styles
   classnames.bind(styles);
@@ -20,8 +22,11 @@ function Header() {
 
   return (
     <header>
-      <div className={styles.logotype}>
-        <Link to="/">{APP_NAME}</Link>
+      <div className={styles.appTitle}>
+        <Link to="/dashboard">
+          <img alt="membrane logo" src={membraneLogo} />
+          {APP_NAME}
+        </Link>
       </div>
       <div className={styles.navbar}>
         <NavBar
