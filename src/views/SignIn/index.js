@@ -44,8 +44,8 @@ export default memo(function SignIn(props) {
       <Animate
         play={true}
         duration={0.25}
-        start={{ transform: 'scale(0)' }}
-        end={{ transform: 'scale(1)' }}>
+        start={{ opacity: 0 }}
+        end={{ opacity: 1 }}>
         <div className={styles.signInContainer}>
           <h2>Sign In</h2>
           <div className={styles.signInForm}>
@@ -84,7 +84,7 @@ export default memo(function SignIn(props) {
               actions={[
                 {
                   type: 'primary',
-                  actionType: 'submit',
+                  useSubmitBehavior: true,
                   label: 'Next',
                   onClick: onSubmit
                 },

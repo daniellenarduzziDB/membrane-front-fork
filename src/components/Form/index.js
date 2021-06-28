@@ -9,6 +9,7 @@ import _ from 'lodash';
 import * as styles from './styles.module.scss';
 
 //components
+import Button from '../Button';
 import FontAwesomeIcon, {
   faEye,
   faEyeSlash
@@ -38,7 +39,7 @@ export default memo(function Form(props) {
   }, [errors, props.customError]);
 
   const onSubmit = (data, e) => {
-    let submitAction = _.find(props.actions, { actionType: 'submit' });
+    let submitAction = _.find(props.actions, { useSubmitBehavior: true });
     if (submitAction) submitAction.onClick(data);
   };
 
@@ -51,7 +52,10 @@ export default memo(function Form(props) {
     const { name, type, placeholder, validation } = field;
 
     return (
-      <div className={styles.fieldInput}>
+      <div
+        className={classnames(styles.fieldInput, {
+          'input-field--error': !!errors[name]
+        })}>
         <input
           name={name}
           type={
@@ -86,7 +90,7 @@ export default memo(function Form(props) {
 
         return (
           <div
-            key={index}
+            key={'input-field-' + index}
             className={classnames(styles.field, styles[size ?? 'col-12'])}>
             <label>
               {label}
@@ -95,7 +99,7 @@ export default memo(function Form(props) {
                 : renderDefaultComponent(field)}
 
               <div className={styles.fieldValidation}>
-                {errors[name] && <p>{errors[name].message}</p>}
+                {errors[name] && <p>{errors[name]?.message}</p>}
               </div>
             </label>
           </div>
@@ -105,31 +109,28 @@ export default memo(function Form(props) {
       <div className={styles.actionGroup}>
         {!!_.filter(props.actions, { type: 'primary' }).length && (
           <div className={styles.primaryAction}>
-            {_.filter(props.actions, { type: 'primary' }).map(button =>
-              button.actionType === 'submit' ? (
-                <input
-                  key={shortid.generate()}
-                  type="submit"
-                  value={button.label}
-                />
-              ) : (
-                <button
-                  key={shortid.generate()}
-                  className={classnames({ disabled: button.disabled })}
-                  onClick={button.onClick}>
-                  {button.label}
-                </button>
-              )
-            )}
+            {_.filter(props.actions, { type: 'primary' }).map(button => (
+              <Button
+                key={shortid.generate()}
+                disabled={button.disabled}
+                text={button.label}
+                type="primary"
+                useSubmitBehavior={button.useSubmitBehavior}
+                onClick={!button.useSubmitBehavior ? button.onClick : undefined}
+              />
+            ))}
           </div>
         )}
 
         {!!_.filter(props.actions, { type: 'secondary' }).length && (
           <div className={styles.secondaryAction}>
             {_.filter(props.actions, { type: 'secondary' }).map(button => (
-              <button key={shortid.generate()} onClick={button.onClick}>
-                {button.label}
-              </button>
+              <Button
+                key={shortid.generate()}
+                text={button.label}
+                type="secondary"
+                onClick={button.onClick}
+              />
             ))}
           </div>
         )}
@@ -137,17 +138,15 @@ export default memo(function Form(props) {
 
       {!!_.filter(props.actions, { type: 'tertiary' }).length && (
         <div className={styles.tertiaryAction}>
-          {_.filter(props.actions, { type: 'tertiary' }).map(button =>
-            button.linkTo ? (
-              <a key={shortid.generate()} href={button.linkTo}>
-                {button.label}
-              </a>
-            ) : (
-              <button key={shortid.generate()} onClick={button.onClick}>
-                {button.label}
-              </button>
-            )
-          )}
+          {_.filter(props.actions, { type: 'tertiary' }).map(button => (
+            <Button
+              key={shortid.generate()}
+              text={button.label}
+              type="tertiary"
+              linkTo={button.linkTo}
+              onClick={button.onClick}
+            />
+          ))}
         </div>
       )}
     </form>

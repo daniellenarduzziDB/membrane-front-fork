@@ -1,10 +1,14 @@
 :root {
-  --base: #121212;
-  --elevated: #1e1e1e;
-  --light: #2e2e2e;
   --white: #ffffff;
+  --black: #121212;
+  --dark: #1e1e1e;
+  --light: #2e2e2e;
+  --gray: #777777;
   --blue: #0f60ff;
+  --blue--hover: #004fee;
+  --violet: #8743ff;
   --blue-violet: linear-gradient(90deg, #0f60ff 0%, #8743ff 100%);
+  --blue-violet--hover: linear-gradient(90deg, #5d93ff 0%, #bb95fe 100%);
   --info: #00bcd4;
   --error: #f44336;
   --warning: #ff9800;

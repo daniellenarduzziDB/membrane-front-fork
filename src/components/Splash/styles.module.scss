@@ -3,36 +3,38 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  // height: 100vh;
   background-image: url('../../assets/wave.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
+  overflow-y: auto;
   color: var(--white);
 
   .appTitle {
     display: flex;
     align-items: center;
     text-transform: uppercase;
-    position: absolute;
     font-weight: 500;
     font-size: 22px;
-    top: 10%;
-    z-index: -1;
-
+    margin: 5% 0;
+    // position: absolute;
+    // top: 10%;
+    // z-index: -1;
     img {
       margin-right: 4px;
     }
   }
 
   .infoContainer {
-    position: absolute;
     display: flex;
     flex-direction: row;
-    background: var(--elevated);
-    bottom: 5%;
+    background: var(--dark);
     border-radius: 2rem;
     padding: 1rem;
+    margin: 5% 0;
+    // position: absolute;
+    // bottom: 5%;
     div {
       margin: 0 2rem;
       h5 {
