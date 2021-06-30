@@ -33,10 +33,13 @@ export default memo(function Password(props) {
       });
     else {
       activate({ password })
-        .then(response => {
-          console.log(response);
-          //props.onComplete();
-          // props.history.push('/sign-in');
+        .then(() => {
+          props.history.push('/sign-in');
+          pushNotification({
+            type: 'success',
+            message: `You have successfully signed up on Membrane! Proceed to login to start the onboarding.`,
+            lifetime: 5000
+          });
         })
         .catch(error => {
           pushNotification({

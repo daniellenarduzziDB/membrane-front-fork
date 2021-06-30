@@ -50,9 +50,7 @@ export default function useUser() {
 
   const activate = useCallback(payload => {
     return activateAccount(payload)
-      .then(response => {
-        console.log('resp: ', response);
-      })
+      .then(() => setAuthorizationHeader(null))
       .catch(error => {
         throw new Error(Utils.parseApiError(error));
       });

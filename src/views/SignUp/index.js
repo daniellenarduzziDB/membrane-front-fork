@@ -36,6 +36,7 @@ export default memo(function SignUp(props) {
   const renderStepPersonalInformation = () => {
     return (
       <PersonalInformation
+        {...props}
         onComplete={data => {
           setUserInfo(data);
           setStep(STEPS.SECURITY_CODE);
@@ -57,6 +58,7 @@ export default memo(function SignUp(props) {
   const renderStepPassword = () => {
     return (
       <Password
+        {...props}
         onBack={() => setStep(STEPS.PERSONAL_INFORMATION)}
         onComplete={() => {}}
       />
