@@ -38,9 +38,14 @@ export default memo(function Notification({
       }, 50);
   }, [displayNotification]);
 
+  let boundingClient = document.documentElement.getBoundingClientRect();
   const animate = {
-    onStart: { transform: 'translateY(-80px)' },
-    onEnd: { transform: 'translateY(20px)' }
+    onStart: {
+      transform: `translateY(${Math.abs(boundingClient.top) - 80}px)`
+    },
+    onEnd: {
+      transform: `translateY(${Math.abs(boundingClient.top) + 20}px)`
+    }
   };
 
   return (
@@ -49,7 +54,7 @@ export default memo(function Notification({
         play={playAnimate}
         start={animate.onStart}
         end={animate.onEnd}
-        duration={0.25}
+        duration={0.5}
         onComplete={() => {
           setTimeout(() => {
             setPlayAnimate(false);

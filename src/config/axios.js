@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Utils from '../lib/utils';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL
@@ -15,6 +16,9 @@ export const setAuthorizationHeader = token => {
 };
 
 export const request = {
+  get: (url, payload) => {
+    return api.get(url.concat(Utils.convertToQueryParameters(payload)));
+  },
   post: (url, payload) => {
     return api.post(url, payload);
   }

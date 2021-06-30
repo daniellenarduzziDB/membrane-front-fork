@@ -16,7 +16,7 @@
     align-items: center;
     text-transform: uppercase;
     font-weight: 500;
-    font-size: 22px;
+    font-size: var(--text-lg);
     margin: 5% 0;
     // position: absolute;
     // top: 10%;
@@ -42,7 +42,7 @@
       }
       a {
         text-decoration: none;
-        font-size: 12px;
+        font-size: var(--text-sm);
         color: var(--blue);
       }
     }

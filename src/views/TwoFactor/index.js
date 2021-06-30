@@ -18,7 +18,7 @@ export default memo(function TwoFactor(props) {
     useUser();
 
   //states
-  const [error, setError] = useState('');
+  const [customError, setCustomError] = useState('');
   const [codeValue, setCodeValue] = useState('');
   const [codeComplete, setCodeComplete] = useState(false);
 
@@ -33,7 +33,7 @@ export default memo(function TwoFactor(props) {
         props.history.push('/dashboard');
       })
       .catch(error =>
-        setError({
+        setCustomError({
           field: 'digit',
           type: 'custom',
           message: error?.message
@@ -47,10 +47,10 @@ export default memo(function TwoFactor(props) {
   };
 
   const onRequestNewCode = () => {
-    setError('');
+    setCustomError('');
     setCodeComplete(false);
     requestNewSecurityCode().catch(error =>
-      setError({
+      setCustomError({
         field: 'digit',
         type: 'custom',
         message: error?.message
@@ -76,7 +76,7 @@ export default memo(function TwoFactor(props) {
 
         <div className={styles.twoFactorForm}>
           <Form
-            customError={error}
+            customError={customError}
             items={[
               {
                 label: 'Enter your 6-digit code',

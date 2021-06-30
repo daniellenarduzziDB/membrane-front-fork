@@ -4,55 +4,6 @@
   justify-content: space-between;
 }
 
-.field {
-  margin-top: 4px;
-  // margin-bottom: 8px;
-  label {
-    font-size: 12px;
-    font-weight: 500;
-  }
-  .fieldInput {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: var(--light);
-    padding: 0.75rem;
-    margin-top: 4px;
-    border-radius: 8px;
-    input {
-      border: none;
-      outline: none;
-      background: transparent;
-      color: var(--white);
-      caret-color: var(--white);
-      font-size: 12px;
-      width: 100%;
-
-      &::placeholder {
-        opacity: 0.75;
-        font-size: 12px;
-        font-weight: 500;
-      }
-    }
-    input[type='password'] {
-      width: 90%;
-    }
-    svg {
-      font-size: 16px;
-      cursor: pointer;
-    }
-  }
-  .fieldValidation {
-    min-height: 15px;
-    margin: 4px 0;
-    p {
-      font-weight: normal;
-      color: var(--error);
-      margin: 0;
-    }
-  }
-}
-
 .actionGroup {
   display: flex;
   flex-direction: row-reverse;
@@ -72,16 +23,4 @@
   justify-content: space-between;
   margin: 0.75rem 0;
   width: 100%;
-}
-
-//defining sizes in columns
-//# of columns: 12
-@for $i from 1 through 12 {
-  .col-#{$i} {
-    @if $i == 12 {
-      width: 100%;
-    } @else {
-      width: ($i * 8%);
-    }
-  }
 }

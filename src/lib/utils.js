@@ -9,4 +9,8 @@ export default class Utils {
     const resErrMsg = _.get(error, 'response.data.error.message', null);
     return resErrMsg || resErr || errMsg || defMsg;
   }
+
+  static convertToQueryParameters(payload) {
+    return payload ? '?'.concat(new URLSearchParams(payload).toString()) : '';
+  }
 }

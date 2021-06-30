@@ -63,7 +63,7 @@ export default memo(function SignIn(props) {
                       message: 'This field is required'
                     },
                     pattern: {
-                      value: regex.VALID_EMAIL,
+                      value: regex.EMAIL,
                       message: 'Invalid email format'
                     }
                   }
