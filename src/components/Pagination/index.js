@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import classnames from 'classnames';
+import PropTypes, { number } from 'prop-types';
 
 //components
 import FontAwesomeIcon, {
@@ -11,22 +12,19 @@ import FontAwesomeIcon, {
 //styles
 import * as styles from './styles.module.scss';
 
-const ITEMS_PER_PAGE_OPTIONS = [10,20,30,40,50];
-const TOTAL_PAGES_SHOWN = 5;
-
-export default memo(function Pagination({
+function Pagination({
   currentPageNumber,
   hideItemsPerPage,
-  isFetching,
+  loading,
   itemsPerPage,
   itemsPerPageOptions,
   onItemsPerPageChange,
   onSetPage,
   totalItems,
-  totalPagesShown,
+  totalPagesShown
 }) {
   //bind styles
-  const cx = classnames.bind(styles);
+  classnames.bind(styles);
   
   const renderPages = () => {
     const pagesLength = Math.ceil(totalItems/itemsPerPage);
@@ -46,7 +44,7 @@ export default memo(function Pagination({
       );
     }
 
-    const totalShown = totalPagesShown || TOTAL_PAGES_SHOWN;
+    const totalShown = totalPagesShown;
     const half = Math.floor(totalShown/2);
     let firstIdx = currentPageNumber-half;
     let lastIdx = currentPageNumber+half;
@@ -102,7 +100,7 @@ export default memo(function Pagination({
   }
 
   const renderItemsPerPage = () => {
-    const options = itemsPerPageOptions || ITEMS_PER_PAGE_OPTIONS;
+    const options = itemsPerPageOptions;
     const firstElement = ((currentPageNumber - 1) * itemsPerPage) + 1;
     const lastElement = Math.min(currentPageNumber * itemsPerPage, totalItems);
     let selectedLabel = `${firstElement}-${lastElement} of ${totalItems}`;
@@ -125,10 +123,34 @@ export default memo(function Pagination({
   }
 
   return (
-    !isFetching &&
+    !loading &&
     <div className={styles.pagination}>
       { totalItems > itemsPerPage && renderPages() }
       { !hideItemsPerPage && totalItems > 0 && renderItemsPerPage() }
     </div>
   );
-});
+};
+
+//#region props definitions
+// default values and types
+Pagination.defaultProps = {
+  hideItemsPerPage: false,
+  loading: false,
+  itemsPerPageOptions: [10, 20, 30, 40, 50],
+  totalPagesShown: 5
+};
+
+Pagination.propTypes = {
+  currentPageNumber: PropTypes.number.isRequired,
+  hideItemsPerPage: PropTypes.bool,
+  loading: PropTypes.bool,
+  itemsPerPage: PropTypes.number.isRequired,
+  itemsPerPageOptions: PropTypes.arrayOf(number),
+  onItemsPerPageChange: PropTypes.func,
+  onSetPage: PropTypes.func.isRequired,
+  totalItems: PropTypes.number.isRequired,
+  totalPagesShown: PropTypes.number
+};
+//#endregion
+
+export default memo(Pagination);
