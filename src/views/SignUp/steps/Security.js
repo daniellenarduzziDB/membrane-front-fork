@@ -65,8 +65,8 @@ export default memo(function Security(props) {
     <>
       <label>
         Please confirm that your phone works. We just sent you a text message
-        with a verification code to ******{props.userInfo.phoneNumber.slice(-2)}
-        .
+        with a verification code to ******
+        {props.userInfo.phoneNumber?.slice(-2)}.
       </label>
       <span>*Required fields</span>
       <div className={styles.signUpForm2FA}>
