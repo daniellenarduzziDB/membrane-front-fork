@@ -52,10 +52,7 @@ export default memo(function PersonalInformation(props) {
               size: 'col-6',
               placeholder: 'Enter your first name here',
               validation: {
-                required: {
-                  value: true,
-                  message: 'This field is required'
-                }
+                required: 'This field is required'
               }
             },
             {
@@ -65,10 +62,7 @@ export default memo(function PersonalInformation(props) {
               size: 'col-6',
               placeholder: 'Enter your last name here',
               validation: {
-                required: {
-                  value: true,
-                  message: 'This field is required'
-                }
+                required: 'This field is required'
               }
             },
             {
@@ -77,10 +71,7 @@ export default memo(function PersonalInformation(props) {
               type: 'text',
               placeholder: 'Enter your email here',
               validation: {
-                required: {
-                  value: true,
-                  message: 'This field is required'
-                },
+                required: 'This field is required',
                 pattern: {
                   value: regex.EMAIL,
                   message: 'Invalid email format'

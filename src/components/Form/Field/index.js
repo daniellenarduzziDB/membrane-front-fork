@@ -18,6 +18,7 @@ function Field({
   placeholder,
   size,
   customComponent,
+  editorOptions,
   validation,
   formState
 }) {
@@ -66,7 +67,15 @@ function Field({
   };
 
   const renderDropdown = () => {
-    return <DropDown name={name} {...formState} />;
+    return (
+      <DropDown
+        name={name}
+        placeholder={placeholder}
+        validation={validation}
+        {...editorOptions}
+        {...formState}
+      />
+    );
   };
 
   const renderPasswordSecure = () => {
@@ -108,6 +117,7 @@ Field.defaultProps = {
   placeholder: '',
   size: 'col-12',
   customComponent: undefined,
+  editorOptions: {},
   validation: {},
   errors: {}
 };
@@ -133,6 +143,7 @@ Field.propTypes = {
   placeholder: PropTypes.string,
   size: PropTypes.string,
   customComponent: PropTypes.func,
+  editorOptions: PropTypes.object,
   validation: PropTypes.object,
   errors: PropTypes.object
 };

@@ -5,7 +5,7 @@ import shortid from 'shortid';
 //styles
 import * as styles from './styles.module.scss';
 
-function NavBar(props) {
+function ButtonGroup(props) {
   const { items, stylingMode, classes } = props;
 
   //references
@@ -62,9 +62,9 @@ function NavBar(props) {
   );
 }
 
-NavBar.defaultProps = {
+ButtonGroup.defaultProps = {
   items: [],
   stylingMode: 'contained' || 'outlined'
 };
 
-export default NavBar;
+export default ButtonGroup;

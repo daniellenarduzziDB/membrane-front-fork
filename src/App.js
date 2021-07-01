@@ -1,11 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 
 //import views
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import TwoFactor from './views/TwoFactor';
-import Dashboard from './views/Dashboard';
+
+import Main from './views/Main';
 
 //context
 import { UserContextProvider } from './context/UserContext';
@@ -26,9 +32,12 @@ export default function App() {
             <Switch>
               <Route exact path="/sign-in" component={SignIn} />
               <Route exact path="/sign-up" component={SignUp} />
-              <PrivateRoute exact path="/" component={Dashboard} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/two-factor" component={TwoFactor} />
+
+              <Route exact path="/">
+                <Redirect to="/buy-sell" />
+              </Route>
+              <PrivateRoute exact path="/:view" component={Main} />
             </Switch>
           </Router>
         </NotificationContextProvider>

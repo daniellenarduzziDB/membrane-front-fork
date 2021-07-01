@@ -9,17 +9,29 @@ import * as styles from './styles.module.scss';
 import { APP_NAME } from '../../../contants/app';
 
 //components
-import NavBar from '../../NavBar';
+import ButtonGroup from '../../ButtonGroup';
 import FontAwesomeIcon, { faBell, faCog } from '../../FontAwesomeIcon';
+import { useHistory } from 'react-router-dom';
 
 import membraneLogo from '../../../assets/logo_membrane.svg';
 
-function Header() {
+const headerRoutes = {
+  0: '/buy-sell',
+  1: '/loan-borrow',
+  2: '/users',
+  3: '/settlements',
+  4: '/my-balance'
+};
+
+function Header(props) {
   //bind styles
   classnames.bind(styles);
 
-  const handleItemClick = e => {
-    alert(e);
+  //history hook
+  const history = useHistory();
+
+  const handleItemClick = index => {
+    history.push(headerRoutes[index]);
   };
 
   return (
@@ -31,7 +43,7 @@ function Header() {
         </Link>
       </div>
       <div className={styles.navbar}>
-        <NavBar
+        <ButtonGroup
           items={[
             'Buy/Sell',
             'Loan/Borrow',

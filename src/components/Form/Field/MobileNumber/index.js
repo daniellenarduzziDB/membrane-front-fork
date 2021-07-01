@@ -11,9 +11,11 @@ import * as regex from '../../../../helpers/regex';
 //services
 import { getCountries } from '../../../../services/countries';
 
+import DropDown from '../DropDown';
+
 export default function MobileNumber({
   name,
-  watch,
+  isSubmitted,
   trigger,
   register,
   setValue,
@@ -26,14 +28,6 @@ export default function MobileNumber({
   //states
   const [countries, setCountries] = useState([]);
 
-  let code = watch('prefix');
-
-  useEffect(() => {
-    let country = countries.find(c => c.phone_code === code)?.country_id ?? '';
-    setValue('country', country, { shouldValidate: true });
-    // eslint-disable-next-line
-  }, [code]);
-
   useEffect(() => {
     getCountries().then(response => {
       setCountries(response);
@@ -42,24 +36,24 @@ export default function MobileNumber({
 
   return (
     <div className={classnames(styles.mobileNumber)}>
-      <select
-        className={classnames(fieldStyles.fieldInput, fieldStyles['col-4'])}
-        {...register('prefix', {
-          validate: {
-            phoneNumberComplete: () => {
-              trigger(name);
-            }
-          }
-        })}>
-        <option value="" label=""></option>
+      <DropDown
+        classes={fieldStyles['col-4']}
+        items={countries}
+        name="phoneCode"
+        placeholder="+1"
+        labelKey="country_id"
+        valueKey="country_id"
+        displayKey="phone_code"
+        register={register}
+        setValue={setValue}
+        onOptionChanged={value => {
+          let country = countries.find(c => c.country_id === value);
 
-        {countries.map(country => {
-          const { country_id, phone_code } = country;
-          return (
-            <option key={country_id} value={phone_code} label={phone_code} />
-          );
-        })}
-      </select>
+          setValue('country', country.country_id);
+          setValue('prefix', country.phone_code);
+          if (isSubmitted) trigger(name);
+        }}
+      />
 
       <div className={classnames(fieldStyles.fieldInput, fieldStyles['col-7'])}>
         <input
@@ -73,6 +67,7 @@ export default function MobileNumber({
             validate: {
               phoneNumberComplete: () => {
                 const values = getValues();
+
                 let prefix = values.prefix;
                 let phone = values[name];
 
