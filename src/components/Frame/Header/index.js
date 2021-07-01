@@ -18,12 +18,14 @@ function Header() {
   //bind styles
   classnames.bind(styles);
 
-  const handleItemClick = e => {};
+  const handleItemClick = e => {
+    alert(e);
+  };
 
   return (
     <header>
       <div className={styles.appTitle}>
-        <Link to="/dashboard">
+        <Link to="/">
           <img alt="membrane logo" src={membraneLogo} />
           {APP_NAME}
         </Link>

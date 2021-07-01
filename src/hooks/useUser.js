@@ -65,6 +65,7 @@ export default function useUser() {
     payload => {
       return loginTwoFactor(payload)
         .then(response => {
+          console.log(response);
           setJWT(response);
           sessionStorage.setItem('auth-token', response);
         })

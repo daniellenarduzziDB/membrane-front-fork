@@ -8,6 +8,7 @@ import * as styles from './styles.module.scss';
 //components
 import MobileNumber from './MobileNumber';
 import Password from './Password';
+import DropDown from './DropDown';
 import FontAwesomeIcon, { faEye, faEyeSlash } from '../../FontAwesomeIcon';
 
 function Field({
@@ -64,6 +65,10 @@ function Field({
     return <MobileNumber name={name} {...formState} />;
   };
 
+  const renderDropdown = () => {
+    return <DropDown name={name} {...formState} />;
+  };
+
   const renderPasswordSecure = () => {
     return <Password name={name} placeholder={placeholder} {...formState} />;
   };
@@ -78,6 +83,8 @@ function Field({
         {label}
         {type === 'tel'
           ? renderMobileNumber()
+          : type === 'dropdown'
+          ? renderDropdown()
           : type === 'password-secure'
           ? renderPasswordSecure()
           : type === 'custom'
@@ -112,6 +119,7 @@ Field.propTypes = {
     'text',
     'password',
     'password-secure',
+    'dropdown',
     'color',
     'date',
     'email',
