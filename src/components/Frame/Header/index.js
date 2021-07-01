@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
+import _ from 'lodash';
 
 //styles
 import * as styles from './styles.module.scss';
@@ -53,6 +54,9 @@ function Header(props) {
           ]}
           stylingMode="outlined"
           onItemClick={handleItemClick}
+          defaultSelected={_.findKey(headerRoutes, o => {
+            return o === history.location.pathname;
+          })}
         />
       </div>
       <div className={styles.profile}>
