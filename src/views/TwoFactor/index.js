@@ -30,7 +30,7 @@ export default memo(function TwoFactor(props) {
 
     twoFactorSignIn(payload)
       .then(() => {
-        props.history.push('/dashboard');
+        props.history.push('/');
       })
       .catch(error =>
         setCustomError({
