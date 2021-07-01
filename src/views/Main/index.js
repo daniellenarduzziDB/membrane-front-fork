@@ -7,7 +7,6 @@ import * as styles from './styles.module.scss';
 
 //components
 import Frame from '../../components/Frame';
-import Form from '../../components/Form';
 
 //views
 import BuySell from './BuySell';
