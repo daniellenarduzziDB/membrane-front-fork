@@ -1,3 +1,4 @@
+import React from 'react';
 import { memo, useState } from 'react';
 import classnames from 'classnames';
 import PropTypes, { func } from 'prop-types';
@@ -83,7 +84,7 @@ function Table({
     };
 
     return (
-      <>
+      <React.Fragment key={idx}>
         <tr
           key={idx}
           className={rowClass}
@@ -116,7 +117,7 @@ function Table({
             </td>
           </tr>
         )}
-      </>
+      </React.Fragment>
     );
   }
 
@@ -138,7 +139,6 @@ function Table({
   const rowClass = classnames(styles.tableWrapper, {
     [styles.safariStyle]: isSafari
   });
-  console.log(isSafari);
 
   return (
     loading? 
@@ -157,7 +157,7 @@ Table.defaultProps = {
 };
 
 Table.propTypes = {
-  columnSettings: PropTypes.object.isRequired,
+  columnSettings: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
   loading: PropTypes.bool,
   onRowClicked: PropTypes.func,
