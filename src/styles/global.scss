@@ -26,19 +26,18 @@ body {
 }
 
 ::-webkit-scrollbar {
+  height: 5px;
   width: 5px;
 }
 
+::-webkit-scrollbar-corner,
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--blue-violet);
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-radius: 12px;
 }
 
 input:-webkit-autofill,
