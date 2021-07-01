@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: left;
   position: absolute;
-  color: var(--white);
+  // color: var(--white);
   font-weight: 500;
   border-radius: 1rem;
   padding: 0.5rem;
@@ -18,15 +18,15 @@
   }
 }
 
-.info {
-  background: var(--info);
-}
 .error {
-  background: var(--error);
+  color: var(--text-notif-error);
+  background: var(--bg-notif-error);
 }
 .warning {
-  background: var(--warning);
+  color: var(--text-notif-warning);
+  background: var(--bg-notif-warning);
 }
 .success {
-  background: var(--success);
+  color: var(--text-notif-success);
+  background: var(--bg-notif-success);
 }
