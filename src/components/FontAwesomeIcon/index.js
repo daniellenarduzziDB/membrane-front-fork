@@ -12,7 +12,8 @@ import {
   faTimesCircle,
   faCheckCircle,
   faExclamationCircle,
-  faChevronDown
+  faChevronDown,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 export default FontAwesomeIcon;
@@ -27,5 +28,6 @@ export {
   faTimesCircle,
   faCheckCircle,
   faExclamationCircle,
-  faChevronDown
+  faChevronDown,
+  faTimes
 };

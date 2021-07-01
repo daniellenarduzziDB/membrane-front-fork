@@ -11,16 +11,17 @@ import * as regex from '../../../helpers/regex';
 
 //hooks
 import useUser from '../../../hooks/useUser';
-import useNotification from '../../../hooks/useNotification';
+import useAlert from '../../../hooks/useAlert';
 
 export default memo(function PersonalInformation(props) {
   //hook user
   const { signUp } = useUser();
-  const [pushNotification] = useNotification();
+  const [pushAlert] = useAlert();
 
   const onSubmit = data => {
     data.phoneNumber = data.prefix.concat(data.phoneNumber);
     delete data.prefix;
+    delete data.phoneCode;
 
     data.jobTitle = '';
     data.state = 'CABA';
@@ -30,7 +31,7 @@ export default memo(function PersonalInformation(props) {
         props.onComplete(response);
       })
       .catch(error => {
-        pushNotification({
+        pushAlert({
           type: 'error',
           message: error.message,
           lifetime: 5000

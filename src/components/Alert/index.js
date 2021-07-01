@@ -13,30 +13,25 @@ import FontAwesomeIcon, {
 //styles
 import * as styles from './styles.module.scss';
 
-const notificationIcon = {
+const alertIcons = {
   info: infoIcon,
   error: errorIcon,
   success: successIcon,
   warning: warningIcon
 };
 
-export default memo(function Notification({
-  displayNotification,
-  type,
-  message,
-  lifetime
-}) {
+export default memo(function Alert({ displayAlert, type, message, lifetime }) {
   const [playAnimate, setPlayAnimate] = useState(false);
 
   //bind styles
   classnames.bind(styles);
 
   useEffect(() => {
-    if (displayNotification)
+    if (displayAlert)
       setTimeout(() => {
         setPlayAnimate(true);
       }, 50);
-  }, [displayNotification]);
+  }, [displayAlert]);
 
   const animateStyle = y => {
     let defaultStyle = {
@@ -51,7 +46,7 @@ export default memo(function Notification({
   };
 
   return (
-    displayNotification && (
+    displayAlert && (
       <Animate
         play={playAnimate}
         start={animateStyle(-80)}
@@ -62,8 +57,8 @@ export default memo(function Notification({
             setPlayAnimate(false);
           }, lifetime - 1000);
         }}>
-        <div className={classnames(styles.notification, styles[type])}>
-          <FontAwesomeIcon icon={notificationIcon[type]} />
+        <div className={classnames(styles.alert, styles[type])}>
+          <FontAwesomeIcon icon={alertIcons[type]} />
           {message}
         </div>
       </Animate>

@@ -15,7 +15,7 @@ import Main from './views/Main';
 
 //context
 import { UserContextProvider } from './context/UserContext';
-import { NotificationContextProvider } from './context/NotificationContext';
+import { AlertContextProvider } from './context/AlertContext';
 
 //private route
 import PrivateRoute from './components/PrivateRoute';
@@ -27,7 +27,7 @@ export default function App() {
   return (
     <React.Fragment>
       <UserContextProvider>
-        <NotificationContextProvider>
+        <AlertContextProvider>
           <Router>
             <Switch>
               <Route exact path="/sign-in" component={SignIn} />
@@ -40,7 +40,7 @@ export default function App() {
               <PrivateRoute exact path="/:view" component={Main} />
             </Switch>
           </Router>
-        </NotificationContextProvider>
+        </AlertContextProvider>
       </UserContextProvider>
     </React.Fragment>
   );

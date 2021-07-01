@@ -1,9 +1,8 @@
-.notification {
+.alert {
   display: flex;
   align-items: center;
   justify-content: left;
   position: absolute;
-  // color: var(--white);
   font-weight: 500;
   border-radius: 1rem;
   padding: 0.5rem;
@@ -14,7 +13,7 @@
 
   svg {
     margin: 1rem;
-    font-size: var(--icon-notification);
+    font-size: var(--icon-alert);
   }
 }
 

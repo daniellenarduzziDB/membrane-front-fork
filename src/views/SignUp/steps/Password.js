@@ -9,7 +9,7 @@ import Form from '../../../components/Form';
 
 //hooks
 import useUser from '../../../hooks/useUser';
-import useNotification from '../../../hooks/useNotification';
+import useAlert from '../../../hooks/useAlert';
 
 export default memo(function Password(props) {
   //bind styles
@@ -17,7 +17,7 @@ export default memo(function Password(props) {
 
   //hook user
   const { activate } = useUser();
-  const [pushNotification] = useNotification();
+  const [pushAlert] = useAlert();
 
   //states
   const [customError, setCustomError] = useState('');
@@ -35,14 +35,14 @@ export default memo(function Password(props) {
       activate({ password })
         .then(() => {
           props.history.push('/sign-in');
-          pushNotification({
+          pushAlert({
             type: 'success',
             message: `You have successfully signed up on Membrane! Proceed to login to start the onboarding.`,
             lifetime: 5000
           });
         })
         .catch(error => {
-          pushNotification({
+          pushAlert({
             type: 'error',
             message: error.message,
             lifetime: 5000
