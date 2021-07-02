@@ -14,7 +14,7 @@ export default memo(function Footer() {
     <div className={styles.footer}>
       <h5>Have doubts about trading?</h5>
       <label>Contact Membrane support</label>
-      <a href="mailto:support@membrane.com">support@membrane.com</a>
+      <label>support@membrane.com</label>
     </div>
   );
 });
