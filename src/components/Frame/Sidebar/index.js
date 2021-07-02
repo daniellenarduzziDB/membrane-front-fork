@@ -7,16 +7,21 @@ import * as styles from './styles.module.scss';
 //components
 import FontAwesomeIcon, { faTimes } from '../../FontAwesomeIcon';
 
-export default memo(function Sidebar() {
+export default memo(function Sidebar({ open, handleNotification }) {
   //bind styles
   classnames.bind(styles);
 
   return (
-    <div className={styles.sidebarContainer}>
+    <div
+      className={classnames(
+        styles.sidebarContainer,
+        open ? styles['sidebarContainer--displayed'] : ''
+      )}>
       <div className={styles.overlay}></div>
       <div className={styles.sidebar}>
         <h2>
-          Notifications <FontAwesomeIcon icon={faTimes} />
+          Notifications
+          <FontAwesomeIcon icon={faTimes} onClick={handleNotification} />
         </h2>
       </div>
     </div>
