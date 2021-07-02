@@ -1,0 +1,17 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  padding: 2rem;
+  color: var(--white);
+  h5 {
+    margin-bottom: 1.025rem;
+  }
+  a,
+  label {
+    font-size: var(--text-sm);
+  }
+  label {
+    font-weight: 500;
+  }
+}

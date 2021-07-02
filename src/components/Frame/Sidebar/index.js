@@ -23,6 +23,7 @@ export default memo(function Sidebar({ open, handleNotification }) {
           Notifications
           <FontAwesomeIcon icon={faTimes} onClick={handleNotification} />
         </h2>
+        <div className={styles.sidebarContent}>No new notifications</div>
       </div>
     </div>
   );

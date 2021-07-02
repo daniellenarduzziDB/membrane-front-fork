@@ -6,6 +6,7 @@ import * as styles from './styles.module.scss';
 
 //components
 import Header from './Header';
+import Footer from './Footer';
 import Sidebar from './Sidebar';
 
 export default memo(function Frame({ children }) {
@@ -26,6 +27,7 @@ export default memo(function Frame({ children }) {
         handleNotification={handleNotification}
       />
       <div className={styles.mainContent}>{children}</div>
+      <Footer />
     </div>
   );
 });
