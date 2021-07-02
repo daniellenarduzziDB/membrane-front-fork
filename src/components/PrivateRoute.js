@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 
-import { isLoggedIn } from '../services/signin';
+import { isLoggedIn } from '../services/auth';
 
 //hooks
 import useUser from '../hooks/useUser';

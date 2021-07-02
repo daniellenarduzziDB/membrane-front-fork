@@ -22,7 +22,7 @@ function Button({
   return (
     <div className={classnames(styles.button, styles['btn-' + type], classes)}>
       {!useSubmitBehavior ? (
-        type === 'tertiary' ? (
+        type === 'tertiary' && linkTo ? (
           <a href={linkTo}>{text}</a>
         ) : (
           <button

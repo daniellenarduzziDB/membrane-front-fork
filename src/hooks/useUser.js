@@ -2,7 +2,13 @@ import { useCallback, useContext } from 'react';
 import UserContext from '../context/UserContext';
 
 //services
-import { login, loginTwoFactor, requestNewCode } from '../services/signin';
+import {
+  login,
+  loginTwoFactor,
+  requestNewCode,
+  generateAccount,
+  activateAccount
+} from '../services/auth';
 
 //config
 import { setAuthorizationHeader } from '../config/axios';
@@ -30,6 +36,26 @@ export default function useUser() {
     [setTwoFactorAuth]
   );
 
+  const signUp = useCallback(payload => {
+    return generateAccount(payload)
+      .then(response => {
+        const { token, account } = response;
+        setAuthorizationHeader(token);
+        return account;
+      })
+      .catch(error => {
+        throw new Error(Utils.parseApiError(error));
+      });
+  }, []);
+
+  const activate = useCallback(payload => {
+    return activateAccount(payload)
+      .then(() => setAuthorizationHeader(null))
+      .catch(error => {
+        throw new Error(Utils.parseApiError(error));
+      });
+  }, []);
+
   const singOut = useCallback(() => {
     sessionStorage.removeItem('auth-token');
     setJWT(null);
@@ -49,6 +75,16 @@ export default function useUser() {
     [setJWT]
   );
 
+  const twoFactorSignUp = useCallback(payload => {
+    return loginTwoFactor(payload)
+      .then(response => {
+        setAuthorizationHeader(response);
+      })
+      .catch(error => {
+        throw new Error(Utils.parseApiError(error));
+      });
+  }, []);
+
   const requestNewSecurityCode = useCallback(() => {
     return requestNewCode().catch(error => {
       throw new Error(Utils.parseApiError(error));
@@ -65,8 +101,11 @@ export default function useUser() {
     twoFactorAuth,
     isLoggedIn: Boolean(jwt),
     signIn,
+    signUp,
+    activate,
     singOut,
     twoFactorSignIn,
+    twoFactorSignUp,
     requestNewSecurityCode,
     clearToken
   };

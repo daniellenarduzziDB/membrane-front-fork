@@ -5,108 +5,71 @@ import classnames from 'classnames';
 import * as styles from './styles.module.scss';
 
 //components
-import Form from '../../components/Form';
 import Splash from '../../components/Splash';
 
-//regex validation
-import * as regex from '../../helpers/regex';
+import PersonalInformation from './steps/PersonalInformation';
+import Password from './steps/Password';
+import Security from './steps/Security';
 
 export default memo(function SignUp(props) {
+  const STEPS = {
+    PERSONAL_INFORMATION: 0,
+    SECURITY_CODE: 1,
+    PASSWORD: 2
+  };
+
   //states
-  const [error, setError] = useState('');
+  const [step, setStep] = useState(STEPS.PERSONAL_INFORMATION);
+  const [userInfo, setUserInfo] = useState({});
 
   //bind styles
   classnames.bind(styles);
+
+  const renderStep = () => {
+    return step === STEPS.PERSONAL_INFORMATION
+      ? renderStepPersonalInformation()
+      : step === STEPS.SECURITY_CODE
+      ? renderStepSecurityCode()
+      : renderStepPassword();
+  };
+
+  const renderStepPersonalInformation = () => {
+    return (
+      <PersonalInformation
+        {...props}
+        onComplete={data => {
+          setUserInfo(data);
+          setStep(STEPS.SECURITY_CODE);
+        }}
+      />
+    );
+  };
+
+  const renderStepSecurityCode = () => {
+    return (
+      <Security
+        {...props}
+        userInfo={userInfo}
+        onComplete={() => setStep(STEPS.PASSWORD)}
+      />
+    );
+  };
+
+  const renderStepPassword = () => {
+    return (
+      <Password
+        {...props}
+        onBack={() => setStep(STEPS.PERSONAL_INFORMATION)}
+        onComplete={() => {}}
+      />
+    );
+  };
 
   return (
     <Splash>
       <div className={styles.signUpContainer}>
         <h2>Sign Up</h2>
-        <label>Please enter your personal information</label>
-
-        <div className={styles.signUpForm}>
-          <Form
-            customError={error}
-            items={[
-              {
-                label: 'First Name *',
-                name: 'firstName',
-                type: 'text',
-                size: 'col-6',
-                placeholder: 'Enter your first name here',
-                validation: {
-                  required: {
-                    value: true,
-                    message: 'This field is required'
-                  }
-                }
-              },
-              {
-                label: 'Last Name *',
-                name: 'lastName',
-                type: 'text',
-                size: 'col-6',
-                placeholder: 'Enter your last name here',
-                validation: {
-                  required: {
-                    value: true,
-                    message: 'This field is required'
-                  }
-                }
-              },
-              {
-                label: 'Email *',
-                name: 'email',
-                type: 'text',
-                placeholder: 'Enter your email here',
-                validation: {
-                  required: {
-                    value: true,
-                    message: 'This field is required'
-                  },
-                  pattern: {
-                    value: regex.VALID_EMAIL,
-                    message: 'Invalid email format'
-                  }
-                }
-              },
-              {
-                label: 'Company',
-                name: 'company',
-                type: 'text',
-                size: 'col-6',
-                placeholder: 'Enter your company name here'
-              },
-              {
-                label: 'Prefix *',
-                name: 'prefix',
-                type: 'text',
-                size: 'col-2',
-                placeholder: '+1'
-              },
-              {
-                label: 'Phone Number *',
-                name: 'phone',
-                type: 'text',
-                size: 'col-4',
-                placeholder: 'Mobile number'
-              }
-            ]}
-            actions={[
-              {
-                type: 'primary',
-                actionType: 'submit',
-                label: 'Next',
-                onClick: () => {}
-              },
-              {
-                type: 'tertiary',
-                label: 'Alerady have an account?',
-                onClick: () => {}
-              }
-            ]}
-          />
-        </div>
+        {renderStep()}
       </div>
     </Splash>
   );

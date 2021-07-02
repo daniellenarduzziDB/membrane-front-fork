@@ -10,32 +10,7 @@ export default class Utils {
     return resErrMsg || resErr || errMsg || defMsg;
   }
 
-  static getUrlParameters (queryParams, addPagination) {
-    const limit = 10;
-    if (addPagination) {
-      if (queryParams) {
-        if (!queryParams.offset) {
-          queryParams.offset = 0;
-        }
-        if (!queryParams.limit) {
-          queryParams.limit = limit;
-        }
-      } else {
-        queryParams = {
-          offset: 0,
-          limit
-        };
-      }
-    }
-  
-    let urlParams = '';
-    let join = '?'
-    Object.keys(queryParams).forEach(i => {
-      if(queryParams[i]){
-        urlParams += `${join}${i}=${queryParams[i]}`;
-        join = '&';
-      }
-    });
-    return urlParams;
+  static convertToQueryParameters(payload) {
+    return payload ? '?'.concat(new URLSearchParams(payload).toString()) : '';
   }
 }

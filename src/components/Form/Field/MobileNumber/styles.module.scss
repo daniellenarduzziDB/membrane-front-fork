@@ -1,0 +1,14 @@
+.mobileNumber {
+  display: flex;
+  justify-content: space-between;
+  input,
+  select {
+    background: transparent;
+    outline: none;
+    border: none;
+    color: var(--white);
+  }
+  input {
+    font-size: var(--text-sm);
+  }
+}

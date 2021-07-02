@@ -1,6 +1,11 @@
+@import '../../styles/breakpoints';
+
 .digitCode {
   display: flex;
   .inputGroup {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     input {
       background-color: transparent;
       border: none;
@@ -26,6 +31,18 @@
       &::selection {
         color: none;
         background: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $break-xs) {
+  .digitCode {
+    .inputGroup {
+      input {
+        height: 28px;
+        width: 28px;
+        margin: 8px 2px;
       }
     }
   }

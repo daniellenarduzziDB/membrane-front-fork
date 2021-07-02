@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
+import _ from 'lodash';
 
 //styles
 import * as styles from './styles.module.scss';
@@ -9,27 +10,41 @@ import * as styles from './styles.module.scss';
 import { APP_NAME } from '../../../contants/app';
 
 //components
-import NavBar from '../../NavBar';
+import ButtonGroup from '../../ButtonGroup';
 import FontAwesomeIcon, { faBell, faCog } from '../../FontAwesomeIcon';
+import { useHistory } from 'react-router-dom';
 
 import membraneLogo from '../../../assets/logo_membrane.svg';
 
-function Header() {
+const headerRoutes = {
+  0: '/buy-sell',
+  1: '/loan-borrow',
+  2: '/users',
+  3: '/settlements',
+  4: '/my-balance'
+};
+
+function Header({ handleNotification }) {
   //bind styles
   classnames.bind(styles);
 
-  const handleItemClick = e => {};
+  //history hook
+  const history = useHistory();
+
+  const handleItemClick = index => {
+    history.push(headerRoutes[index]);
+  };
 
   return (
     <header>
       <div className={styles.appTitle}>
-        <Link to="/dashboard">
+        <Link to="/">
           <img alt="membrane logo" src={membraneLogo} />
           {APP_NAME}
         </Link>
       </div>
       <div className={styles.navbar}>
-        <NavBar
+        <ButtonGroup
           items={[
             'Buy/Sell',
             'Loan/Borrow',
@@ -39,10 +54,13 @@ function Header() {
           ]}
           stylingMode="outlined"
           onItemClick={handleItemClick}
+          defaultSelected={_.findKey(headerRoutes, o => {
+            return o === history.location.pathname;
+          })}
         />
       </div>
       <div className={styles.profile}>
-        <FontAwesomeIcon icon={faBell} />
+        <FontAwesomeIcon icon={faBell} onClick={handleNotification} />
         <FontAwesomeIcon icon={faCog} />
       </div>
     </header>

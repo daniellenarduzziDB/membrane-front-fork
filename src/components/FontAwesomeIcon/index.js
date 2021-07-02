@@ -11,13 +11,14 @@ import {
   faInfoCircle,
   faTimesCircle,
   faCheckCircle,
+  faExclamationCircle,
   faChevronDown,
   faChevronLeft,
   faChevronRight,
   faSort,
   faSortUp,
   faSortDown,
-  faExclamationCircle
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 export default FontAwesomeIcon;
@@ -31,11 +32,12 @@ export {
   faInfoCircle,
   faTimesCircle,
   faCheckCircle,
+  faExclamationCircle,
   faChevronDown,
   faChevronLeft,
   faChevronRight,
   faSort,
   faSortUp,
   faSortDown,
-  faExclamationCircle
+  faTimes
 };

@@ -1,10 +1,9 @@
 import { request } from '../config/axios';
 import Utils from '../lib/utils';
 
-const fetchEntries = queryParams => {
+const fetchEntries = params => {
   const url = 'v2/whitelist-entries';
-  const urlParameters = Utils.getUrlParameters(queryParams);
-  return request.get(`${url}${urlParameters}`).then(response => {
+  return request.get(url, params).then(response => {
     const { error, data } = response.data;
     if (error) {
       throw new Error(Utils.parseApiError(error));

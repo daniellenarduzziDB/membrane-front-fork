@@ -58,12 +58,9 @@ export default memo(function SignIn(props) {
                   placeholder: 'Enter your email',
                   type: 'text',
                   validation: {
-                    required: {
-                      value: true,
-                      message: 'This field is required'
-                    },
+                    required: 'This field is required',
                     pattern: {
-                      value: regex.VALID_EMAIL,
+                      value: regex.EMAIL,
                       message: 'Invalid email format'
                     }
                   }
@@ -74,10 +71,7 @@ export default memo(function SignIn(props) {
                   placeholder: 'Enter your password',
                   type: 'password',
                   validation: {
-                    required: {
-                      value: true,
-                      message: 'This field is required'
-                    }
+                    required: 'This field is required'
                   }
                 }
               ]}

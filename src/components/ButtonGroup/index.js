@@ -5,8 +5,8 @@ import shortid from 'shortid';
 //styles
 import * as styles from './styles.module.scss';
 
-function NavBar(props) {
-  const { items, stylingMode, classes } = props;
+function ButtonGroup(props) {
+  const { items, stylingMode, defaultSelected, classes } = props;
 
   //references
   const tabRef = useRef(null);
@@ -20,7 +20,7 @@ function NavBar(props) {
       moveSelector();
     }, 250);
 
-    return () => {};
+    // eslint-disable-next-line
   }, []);
 
   const onClick = (e, index) => {
@@ -28,14 +28,14 @@ function NavBar(props) {
 
     Event.preventDoubleClick(e, () => {
       moveSelector(e);
-
-      if (props.onItemClick)
-        if (typeof props.onItemClick === 'function') props.onItemClick(index);
+      if (props.onItemClick) props.onItemClick(index);
     });
   };
 
   const moveSelector = e => {
-    let previous = tabRef.current.querySelector('button');
+    let previous = defaultSelected
+      ? tabRef.current.querySelector(`button[data-order='${defaultSelected}']`)
+      : tabRef.current.querySelector('button');
 
     let current = e?.target || previous;
     selectorRef.current.style.left = `${current.offsetLeft}px`;
@@ -62,9 +62,10 @@ function NavBar(props) {
   );
 }
 
-NavBar.defaultProps = {
+ButtonGroup.defaultProps = {
   items: [],
+  defaultSelected: null,
   stylingMode: 'contained' || 'outlined'
 };
 
-export default NavBar;
+export default ButtonGroup;

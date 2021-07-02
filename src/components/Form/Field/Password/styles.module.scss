@@ -1,0 +1,17 @@
+.verifyItems {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.025rem;
+  > * {
+    color: var(--white);
+  }
+  label {
+    padding-bottom: 0.5rem;
+  }
+  div {
+    margin: 0.5rem;
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+}
