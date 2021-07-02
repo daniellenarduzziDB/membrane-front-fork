@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import shortid from 'shortid';
 
@@ -22,6 +22,10 @@ function ButtonGroup(props) {
 
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (defaultSelected) moveSelector();
+  }, [defaultSelected]);
 
   const onClick = (e, index) => {
     e.preventDefault();
@@ -68,4 +72,4 @@ ButtonGroup.defaultProps = {
   stylingMode: 'contained' || 'outlined'
 };
 
-export default ButtonGroup;
+export default memo(ButtonGroup);
