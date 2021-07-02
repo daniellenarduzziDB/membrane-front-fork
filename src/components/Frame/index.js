@@ -13,6 +13,7 @@ export default memo(function Frame({ children }) {
   return (
     <div>
       <Header />
+      {/* <Sidebar /> */}
       <div className={styles.mainContent}>{children}</div>
     </div>
   );

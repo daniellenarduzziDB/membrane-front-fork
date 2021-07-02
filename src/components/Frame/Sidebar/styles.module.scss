@@ -1,0 +1,31 @@
+.overlay,
+.sidebar {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  z-index: 99;
+}
+
+.overlay {
+  left: 0;
+  opacity: 0.7;
+  width: 100vw;
+  background: var(--dark);
+}
+
+.sidebar {
+  box-sizing: border-box;
+  right: 0;
+  background: var(--black);
+  color: var(--white);
+  padding: 1.25rem;
+  width: 400px;
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    svg {
+      cursor: pointer;
+    }
+  }
+}

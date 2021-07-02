@@ -9,15 +9,13 @@
   --violet: #8743ff;
   --blue-violet: linear-gradient(90deg, #0f60ff 0%, #8743ff 100%);
   --blue-violet--hover: linear-gradient(90deg, #5d93ff 0%, #bb95fe 100%);
-  --bg-notif-error: #f8d7da;
-  --bg-notif-warning: #fff3cd;
-  --bg-notif-success: #d4edda;
-  --text-notif-error: #721c24;
-  --text-notif-warning: #856404;
-  --text-notif-success: #155724;
-  --input-error-text: #f44336;
-  // --info: #00bcd4;
-  // --error: #f44336;
-  // --warning: #ff9800;
-  // --success: #4caf50;
+  //alert
+  --bg-alert-error: #f8d7da;
+  --bg-alert-warning: #fff3cd;
+  --bg-alert-success: #d4edda;
+  --text-alert-error: #721c24;
+  --text-alert-warning: #856404;
+  --text-alert-success: #155724;
+  //input error
+  --text-input-error: #f44336;
 }

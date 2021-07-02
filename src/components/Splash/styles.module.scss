@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // height: 100vh;
   background-image: url('../../assets/wave.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -18,9 +17,6 @@
     font-weight: 500;
     font-size: var(--text-lg);
     margin: 5% 0;
-    // position: absolute;
-    // top: 10%;
-    // z-index: -1;
     img {
       margin-right: 4px;
     }
@@ -29,14 +25,13 @@
   .infoContainer {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     background: var(--dark);
     border-radius: 2rem;
-    padding: 1rem;
-    margin: 5% 0;
-    // position: absolute;
-    // bottom: 5%;
+    padding: 1.025rem;
+    margin: 5% 1.025rem;
     div {
-      margin: 0 2rem;
+      margin: 1.025rem 2rem;
       h5 {
         margin: 0;
       }

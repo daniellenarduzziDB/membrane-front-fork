@@ -1,6 +1,5 @@
 .signUpContainer {
-  display: flex;
-  flex-direction: column;
+  margin: 1.025rem;
   span {
     color: var(--gray);
     font-size: var(--text-btn-tertiary);
@@ -13,17 +12,14 @@
     box-sizing: border-box;
     margin: auto;
     border-radius: 2rem;
-    padding: 3rem;
+    padding: 2rem;
     margin-top: 3rem;
-
     background: var(--dark);
   }
   .signUpForm {
-    min-width: 400px;
     max-width: 600px;
   }
   .signUpForm2FA {
-    min-width: 400px;
     max-width: 400px;
   }
 }

@@ -1,0 +1,14 @@
+.settlementHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .settlementAlert {
+    color: var(--text-alert-warning);
+    background: var(--bg-alert-warning);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    margin: 1.5rem 0;
+  }
+}
