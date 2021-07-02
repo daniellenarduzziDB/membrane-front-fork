@@ -15,6 +15,9 @@ export const setAuthorizationHeader = token => {
 };
 
 export const request = {
+  get: (url) => {
+    return api.get(url);
+  },
   post: (url, payload) => {
     return api.post(url, payload);
   }
