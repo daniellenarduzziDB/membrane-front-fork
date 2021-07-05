@@ -35,9 +35,6 @@ function Field({
   };
 
   const renderDefaultComponent = () => {
-    // if (classes) classnames.bind(classes);
-    // fill background on error: {'input-field--error': !!errors[name]}
-
     return (
       <div className={classnames(styles.fieldInput)}>
         <input

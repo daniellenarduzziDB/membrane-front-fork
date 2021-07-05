@@ -18,7 +18,8 @@ import {
   faSort,
   faSortUp,
   faSortDown,
-  faTimes
+  faTimes,
+  faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
 
 export default FontAwesomeIcon;
@@ -39,5 +40,6 @@ export {
   faSort,
   faSortUp,
   faSortDown,
-  faTimes
+  faTimes,
+  faExclamationTriangle
 };

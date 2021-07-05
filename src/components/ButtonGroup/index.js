@@ -19,12 +19,12 @@ function ButtonGroup(props) {
     setTimeout(() => {
       moveSelector();
     }, 250);
-
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (defaultSelected) moveSelector();
+    // eslint-disable-next-line
   }, [defaultSelected]);
 
   const onClick = (e, index) => {

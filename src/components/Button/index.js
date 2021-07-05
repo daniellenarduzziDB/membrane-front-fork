@@ -21,18 +21,15 @@ function Button({
 
   return (
     <div className={classnames(styles.button, styles['btn-' + type], classes)}>
-      {!useSubmitBehavior ? (
-        type === 'tertiary' && linkTo ? (
-          <a href={linkTo}>{text}</a>
-        ) : (
-          <button
-            className={classnames({ disabled: disabled })}
-            onClick={onClick}>
-            {text}
-          </button>
-        )
+      {type === 'tertiary' && linkTo ? (
+        <a href={linkTo}>{text}</a>
       ) : (
-        <input type="submit" value={text} onClick={onClick} />
+        <button
+          className={classnames({ disabled: disabled })}
+          type={useSubmitBehavior ? 'submit' : 'button'}
+          onClick={onClick}>
+          {text}
+        </button>
       )}
     </div>
   );

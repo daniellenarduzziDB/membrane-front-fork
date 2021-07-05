@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import _ from 'lodash';
