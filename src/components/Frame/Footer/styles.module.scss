@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  padding: 2rem;
+  color: var(--white);
+  h5 {
+    margin-bottom: 1.025rem;
+  }
+  label {
+    font-size: var(--text-sm);
+    margin-bottom: 0.75rem;
+  }
+}

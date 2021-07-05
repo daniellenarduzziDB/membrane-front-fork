@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import _ from 'lodash';
@@ -24,7 +24,7 @@ const headerRoutes = {
   4: '/my-balance'
 };
 
-function Header(props) {
+function Header({ handleNotification }) {
   //bind styles
   classnames.bind(styles);
 
@@ -60,7 +60,7 @@ function Header(props) {
         />
       </div>
       <div className={styles.profile}>
-        <FontAwesomeIcon icon={faBell} />
+        <FontAwesomeIcon icon={faBell} onClick={handleNotification} />
         <FontAwesomeIcon icon={faCog} />
       </div>
     </header>

@@ -13,6 +13,11 @@ import {
   faCheckCircle,
   faExclamationCircle,
   faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+  faSort,
+  faSortUp,
+  faSortDown,
   faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,5 +34,10 @@ export {
   faCheckCircle,
   faExclamationCircle,
   faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+  faSort,
+  faSortUp,
+  faSortDown,
   faTimes
 };

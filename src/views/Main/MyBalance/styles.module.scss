@@ -1,0 +1,56 @@
+.myBalanceContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2rem;
+  .coinCard {
+    display: flex;
+    flex-direction: column;
+    width: 175px;
+    height: 250px;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 0.75rem;
+    color: var(--white);
+    background: var(--dark);
+    .coinCardTitle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 20.75px;
+        margin-right: 1.025rem;
+      }
+      label {
+        font-size: var(--text-sm);
+        font-weight: 500;
+      }
+    }
+
+    .coinCardContent {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+      flex: 1 1 auto;
+      color: var(--gray);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      label:last-child {
+        font-size: var(--text-xl);
+        color: #6fcf97;
+      }
+    }
+
+    .coinCardActions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      button {
+        width: 100px;
+        margin: 0.5rem;
+      }
+    }
+  }
+}
