@@ -1,8 +1,6 @@
 import classnames from 'classnames';
-import { memo } from 'react';
-import Form from '../Form';
+import { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 
 //components
 import FontAwesomeIcon, { faTimes } from '../FontAwesomeIcon';
@@ -10,35 +8,35 @@ import FontAwesomeIcon, { faTimes } from '../FontAwesomeIcon';
 //styles
 import * as styles from './styles.module.scss';
 
-function Modal({
-  title,
-  description,
-  items,
-  actions,
-  onCancel
-}) {
+function Modal({ title, visible, onShown, onHiding, children }) {
   //bind styles
   classnames.bind(styles);
 
-  const handleCancelModal = () => {
-    onCancel();
+  useEffect(() => {
+    if (visible) if (onShown) onShown();
+    // eslint-disable-next-line
+  }, [visible]);
+
+  const handleHiddingModal = () => {
+    if (onHiding) onHiding();
   };
 
+  if (!visible) return null;
   return (
-    <div className={styles.modalContainer}>
-      <div className={styles.modalContent}>
-        <FontAwesomeIcon
-          className={styles.modalIcon}
-          icon={faTimes}
-          color={'#FFFFFF'}
-          onClick={handleCancelModal}
-        />
-        <h2>{title}</h2>
-        <span>{description}</span>
-        <Form
-          items={items}
-          actions={actions}
+    <div className={styles.modal}>
+      <div className={styles.overlay}></div>
+      <div className={styles.modalContainer}>
+        <div className={styles.modalHeader}>
+          <h2>{title}</h2>
+
+          <FontAwesomeIcon
+            className={styles.modalIcon}
+            icon={faTimes}
+            color={'#FFFFFF'}
+            onClick={handleHiddingModal}
           />
+        </div>
+        <div className={styles.modalContent}>{children}</div>
       </div>
     </div>
   );
@@ -47,18 +45,16 @@ function Modal({
 //#region props definitions
 // default values and types
 Modal.defaultProps = {
-  title:'',
-  description: '',
-  items: []
+  title: '',
+  visible: false
 };
 
 Modal.propTypes = {
-  onCancel: PropTypes.func.isRequired,
   title: PropTypes.string,
-  description: PropTypes.string,
-  items: PropTypes.array,
-  actions: PropTypes.array.isRequired
+  visible: PropTypes.bool,
+  onShown: PropTypes.func,
+  onHiding: PropTypes.func
 };
 //#endregion
 
-export default memo(Modal); 
+export default memo(Modal);
