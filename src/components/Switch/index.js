@@ -1,24 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 
 import * as styles from './styles.module.scss';
 
 const Switch = (props) => {
-  const inputRef = useRef(null);
-
   classnames.bind(styles);
-  
-  useEffect(() => {
-    if (props.isChecked) {
-      if (!inputRef.current.checked) {
-        inputRef.current.checked = true;
-      }
-    } else {
-      if (inputRef.current.checked) {
-        inputRef.current.checked = false;
-      }
-    }
-  }, [props.isChecked]);
 
   function handleOnChange(event) {
     props.onChange(event.target.checked);
@@ -30,7 +16,7 @@ const Switch = (props) => {
         type="checkbox" 
         defaultChecked={props.isChecked} 
         onChange={handleOnChange}
-        ref={inputRef}
+        checked={props.isChecked}
       />
       <span className={styles.switchSpan} />
     </label>
