@@ -84,13 +84,18 @@ export default memo(function SignIn(props) {
                 },
                 {
                   type: 'tertiary',
-                  label: 'Forgot Password',
+                  label: 'Sign Up',
+                  linkTo: '/sign-up'
+                },
+                {
+                  type: 'tertiary',
+                  label: 'Forgot Password With 2FA',
                   linkTo: '/forgot-password'
                 },
                 {
                   type: 'tertiary',
-                  label: 'Sign Up',
-                  linkTo: '/sign-up'
+                  label: 'Forgot Password Without 2FA',
+                  linkTo: '/forgot-password'
                 }
               ]}
             />

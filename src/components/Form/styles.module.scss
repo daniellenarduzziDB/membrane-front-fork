@@ -21,7 +21,12 @@
 
 .tertiaryAction {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   margin: 0.75rem 0;
   width: 100%;
+  div {
+    margin-top: 0.5rem;
+  }
 }

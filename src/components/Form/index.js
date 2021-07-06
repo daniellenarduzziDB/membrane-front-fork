@@ -21,7 +21,6 @@ export default memo(function Form(props) {
     getValues,
     setError,
     setValue,
-    setFocus,
     watch,
     trigger,
     formState: { isDirty, isSubmitted, errors }
