@@ -1,12 +1,16 @@
-import { APP_NAME } from '../contants/app';
+import _ from 'lodash';
 
 export default class Utils {
-  static logAppVersion() {
-    import(`../../package.json`).then(({ version }) =>
-      console.log(
-        `%c${APP_NAME} ${version}`,
-        ['background: #003daf', 'color: white', 'padding: 8px 16px'].join(';')
-      )
-    );
+  static parseApiError(error) {
+    if (!error) return null;
+    const defMsg = typeof error === 'string' ? error : 'Something went wrong';
+    const errMsg = _.get(error, 'message', null);
+    const resErr = _.get(error, 'response.data.error', null);
+    const resErrMsg = _.get(error, 'response.data.error.message', null);
+    return resErrMsg || resErr || errMsg || defMsg;
+  }
+
+  static convertToQueryParameters(payload) {
+    return payload ? '?'.concat(new URLSearchParams(payload).toString()) : '';
   }
 }

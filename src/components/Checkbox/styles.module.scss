@@ -1,0 +1,38 @@
+.checkBoxContainer{
+  height: 18px;
+  width: 14px;
+  left: 2px;
+  top: 2px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  input[type="checkbox"] {
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid gray;
+    border-radius: 4px;
+    appearance: none;
+    outline: 0;
+    cursor: pointer;
+    background: white;
+    &::before {
+      position: absolute;
+      content: '';
+      left: 6px;
+      top: 1px;
+      width: 5px;
+      height: 11px;
+      border-style: solid;
+      border-color: black;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+    }
+    &:checked {
+      background: white;
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}

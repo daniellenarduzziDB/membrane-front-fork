@@ -1,0 +1,70 @@
+@import '../../../styles/breakpoints';
+
+.field {
+  margin-top: 4px;
+  // margin-bottom: 8px;
+  label {
+    font-weight: 500;
+    font-size: var(--text-sm);
+    color: var(--white);
+  }
+  .fieldInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: var(--light);
+    padding: 0.75rem;
+    margin-top: 4px;
+    border-radius: 8px;
+    input {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--white);
+      caret-color: var(--white);
+      font-size: var(--text-sm);
+      width: 100%;
+
+      &::placeholder {
+        opacity: 0.75;
+        font-size: var(--text-sm);
+        font-weight: 500;
+      }
+    }
+    input[type='password'] {
+      width: calc(100% - 18px);
+    }
+    svg {
+      font-size: var(--icon-input-field);
+      cursor: pointer;
+    }
+  }
+
+  .fieldValidation {
+    min-height: 15px;
+    margin: 4px 0;
+    p {
+      font-weight: normal;
+      color: var(--text-input-error);
+      margin: 0;
+    }
+  }
+}
+
+//defining sizes in columns
+//# of columns: 12
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    @if $i == 12 {
+      width: 100%;
+    } @else {
+      width: ($i * 8%);
+    }
+  }
+}
+
+@media only screen and (max-width: $break-xs) {
+  .field {
+    width: 100%;
+  }
+}

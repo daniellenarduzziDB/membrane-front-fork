@@ -1,53 +1,47 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-//import context
-import ThemeContext from './context/ThemeContext';
-
-//import lib
-import Utils from './lib/utils';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 
 //import views
-import Splash from './views/Splash';
+import SignIn from './views/SignIn';
+import SignUp from './views/SignUp';
+import TwoFactor from './views/TwoFactor';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      theme: 'dark'
-    };
-  }
+import Main from './views/Main';
 
-  componentDidMount = () => {
-    Utils.logAppVersion();
-  };
+//context
+import { UserContextProvider } from './context/UserContext';
+import { AlertContextProvider } from './context/AlertContext';
 
-  toggleTheme = () => {
-    this.setState(
-      prevState => ({
-        theme: prevState.theme === 'dark' ? 'light' : 'dark'
-      }),
-      () => {
-        let htmlElement = document.body.parentElement;
-        htmlElement.dataset.theme = this.state.theme;
-      }
-    );
-  };
+//private route
+import PrivateRoute from './components/PrivateRoute';
 
-  render() {
-    const { theme } = this.state;
+//libs
+import './lib/event';
 
-    return (
-      <React.Fragment>
-        <ThemeContext.Provider
-          value={{ current: theme, toggleTheme: this.toggleTheme }}>
+export default function App() {
+  return (
+    <React.Fragment>
+      <UserContextProvider>
+        <AlertContextProvider>
           <Router>
             <Switch>
-              <Route exact path="/" component={Splash} />
+              <Route exact path="/sign-in" component={SignIn} />
+              <Route exact path="/sign-up" component={SignUp} />
+              <PrivateRoute exact path="/two-factor" component={TwoFactor} />
+
+              <Route exact path="/">
+                <Redirect to="/buy-sell" />
+              </Route>
+              <PrivateRoute exact path="/:view" component={Main} />
             </Switch>
           </Router>
-        </ThemeContext.Provider>
-      </React.Fragment>
-    );
-  }
+        </AlertContextProvider>
+      </UserContextProvider>
+    </React.Fragment>
+  );
 }

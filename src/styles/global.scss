@@ -2,15 +2,89 @@
 @import './theme/dark.scss';
 @import './theme/light.scss';
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap');
+
+* {
+  font-family: 'Montserrat';
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: all 0.5s ease-in-out;
-  overflow: hidden;
-  background-color: var(--primary);
+  // transition: all 0.5s ease-in-out;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--primary);
   height: 100vh;
   width: 100vw;
   padding: 0;
   margin: 0;
+}
+
+:root {
+  --text-sm: 0.75rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.625rem;
+  --text-btn-tertiary: 0.8125rem;
+  --icon-alert: 1.25rem;
+  --icon-input-field: 1.025rem;
+}
+
+//scrollbar
+::-webkit-scrollbar {
+  width: 16px;
+  background-color: var(--dark);
+  border-radius: 24px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border: 5px solid transparent;
+  border-radius: 24px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+//input validation
+input:-webkit-autofill {
+  box-shadow: 0 0 0 20px var(--light) inset;
+  -webkit-box-shadow: 0 0 0 20px var(--light) inset;
+  -webkit-text-fill-color: var(--white);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-animation: autofill 0s forwards;
+  animation: autofill 0s forwards;
+}
+
+@keyframes autofill {
+  100% {
+    background: transparent;
+    color: inherit;
+  }
+}
+
+.input-field--error {
+  box-shadow: 0 0 0 20px #392f2e inset;
+}
+
+.input-field--error input:-webkit-autofill {
+  box-shadow: 0 0 0 20px #392f2e inset;
+  -webkit-box-shadow: 0 0 0 20px #392f2e inset;
+}
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.3;
 }

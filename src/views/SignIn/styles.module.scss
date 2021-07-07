@@ -1,0 +1,11 @@
+.signInContainer {
+  margin: 1.025rem;
+  .signInForm {
+    max-width: 350px;
+    height: fit-content;
+    box-sizing: border-box;
+    border-radius: 2rem;
+    padding: 3rem;
+    background: var(--dark);
+  }
+}

@@ -1,0 +1,14 @@
+.twoFactorContainer {
+  margin: 1.025rem;
+  .twoFactorForm {
+    height: fit-content;
+    width: fit-content;
+    box-sizing: border-box;
+    margin: auto;
+    border-radius: 2rem;
+    padding: 2rem;
+    margin-top: 3rem;
+    background: var(--dark);
+    max-width: 400px;
+  }
+}
