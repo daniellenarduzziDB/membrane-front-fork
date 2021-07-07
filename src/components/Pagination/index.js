@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import classnames from 'classnames';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 
 //components
 import FontAwesomeIcon, {
@@ -145,7 +145,7 @@ Pagination.propTypes = {
   hideItemsPerPage: PropTypes.bool,
   loading: PropTypes.bool,
   itemsPerPage: PropTypes.number.isRequired,
-  itemsPerPageOptions: PropTypes.arrayOf(number),
+  itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
   onItemsPerPageChange: PropTypes.func,
   onSetPage: PropTypes.func.isRequired,
   totalItems: PropTypes.number.isRequired,

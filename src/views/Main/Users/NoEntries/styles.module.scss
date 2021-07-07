@@ -1,0 +1,18 @@
+.noEntries {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6rem;
+  img {
+    margin: 3.5rem;
+  }
+  h2 {
+    margin: 0;
+    color: var(--white);
+  }
+  p {
+    color: var(--white);
+    font-size: 1.25rem;
+    margin: 0.75rem;
+  }
+}

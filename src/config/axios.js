@@ -5,14 +5,14 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL
 });
 
+api.interceptors.request.use(config => {
+  const token = sessionStorage.getItem('auth-token');
+  if (token) config.headers.Authorization = 'bearer ' + token;
+  return config;
+});
+
 export const setAuthorizationHeader = token => {
   api.defaults.headers.common['Authorization'] = 'bearer ' + token;
-  // axios.defaults.headers.common['Authorization'] = 'bearer ' + token;
-
-  // axios.interceptors.request.use(config => {
-  //   config.headers.Authorization = 'bearer ' + token;
-  //   return config;
-  // });
 };
 
 export const request = {

@@ -11,7 +11,8 @@ import ButtonGroup from '../../../components/ButtonGroup';
 import Whitelist from './Tabs/Whitelist';
 
 const usersTabs = {
-  0: <Whitelist />
+  0: <Whitelist />,
+  1: <div/>
 };
 
 export default memo(function Users() {
@@ -21,8 +22,8 @@ export default memo(function Users() {
   //state
   const [currentTab, setCurrentTab] = useState(0);
 
-  const handleItemClick = e => {
-    //console.log(e);
+  const handleItemClick = index => {
+    setCurrentTab(index);
   };
 
   return (
@@ -33,6 +34,7 @@ export default memo(function Users() {
           'Pending Invites'
         ]}
         stylingMode="contained"
+        classes={styles.tabs}
         onItemClick={handleItemClick}
       />
       <div className={styles.usersContent}>
