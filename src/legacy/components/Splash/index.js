@@ -4,8 +4,6 @@ import classnames from 'classnames';
 //styles
 import * as styles from './styles.module.scss';
 
-// import membraneLogo from '../../assets/logo_membrane.svg';
-
 import { APP_NAME } from '../../contants/app';
 
 export default memo(function Splash({ children }) {
@@ -14,10 +12,10 @@ export default memo(function Splash({ children }) {
 
   return (
     <div className={styles.splash}>
-      {/* <div className={styles.appTitle}>
-        <img alt="membrane logo" src={membraneLogo} />
+      <div className={styles.appTitle}>
+        <img alt="membrane logo" src="/static/logo_membrane.svg" />
         {APP_NAME}
-      </div> */}
+      </div>
       {children}
       <div className={styles.infoContainer}>
         <div>

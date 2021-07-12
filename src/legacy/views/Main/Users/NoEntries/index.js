@@ -1,7 +1,6 @@
 import { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-// import noEntriesImg from '../../../../assets/no_entries.svg';
 
 //styles
 import * as styles from './styles.module.scss';
@@ -23,7 +22,7 @@ function NoEntries({heading, message}) {
   return (
     visible &&
     <div className={styles.noEntries}>
-      {/* <img alt="no entries image" src={noEntriesImg} /> */}
+      <img alt="no entries image" src="/static/no_entries.svg" />
       { heading && <h2>{heading}</h2> }
       { message && <p>{message}</p> }
     </div>

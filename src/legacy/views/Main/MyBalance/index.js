@@ -8,38 +8,30 @@ import * as styles from './styles.module.scss';
 //components
 import Button from '../../../components/Button';
 
-//coins images
-// import coinBCH from '../../../assets/images/coins/BCH.svg';
-// import coinBTC from '../../../assets/images/coins/BTC.svg';
-// import coinETH from '../../../assets/images/coins/ETH.svg';
-// import coinLTC from '../../../assets/images/coins/LTC.svg';
-// import coinSNX from '../../../assets/images/coins/SNX.svg';
-// import coinUSDC from '../../../assets/images/coins/USDC.svg';
-
 const coins = [
   {
     name: 'Bitcoin (BTC)',
-    // img: coinBTC
+    img: "/static/images/coins/BTC.svg"
   },
   {
     name: 'Ethereum (ETC)',
-    // img: coinETH
+    img: "/static/images/coins/ETH.svg"
   },
   {
     name: 'Litecoin (LTC)',
-    // img: coinLTC
+    img: "/static/images/coins/LTC.svg"
   },
   {
     name: 'Bitcoin Cash (BCH)',
-    // img: coinBCH
+    img: "/static/images/coins/BCH.svg"
   },
   {
     name: 'Usdc Coin (USDC)',
-    // img: coinUSDC
+    img: "/static/images/coins/USDC.svg"
   },
   {
     name: 'Synthetix',
-    // img: coinSNX
+    img: "/static/images/coins/SNX.svg"
   }
 ];
 

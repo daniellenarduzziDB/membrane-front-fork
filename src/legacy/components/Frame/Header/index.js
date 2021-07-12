@@ -14,8 +14,6 @@ import ButtonGroup from '../../ButtonGroup';
 import FontAwesomeIcon, { faBell, faCog } from '../../FontAwesomeIcon';
 import { useHistory } from 'react-router-dom';
 
-// import membraneLogo from '../../../assets/logo_membrane.svg';
-
 const headerRoutes = {
   0: '/buy-sell',
   1: '/loan-borrow',
@@ -38,10 +36,10 @@ function Header({ handleNotification }) {
   return (
     <header>
       <div className={styles.appTitle}>
-        {/* <Link to="/">
-          <img alt="membrane logo" src={membraneLogo} />
+        <Link to="/">
+          <img alt="membrane logo" src="/static/logo_membrane.svg" />
           {APP_NAME}
-        </Link> */}
+        </Link>
       </div>
       <div className={styles.navbar}>
         <ButtonGroup
