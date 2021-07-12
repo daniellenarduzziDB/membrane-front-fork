@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const APP_NAME = 'Membrane';","map":{"version":3,"sources":["/home/juanma/projects/membrane-front/src/legacy/contants/app.js"],"names":["APP_NAME"],"mappings":"AAAA,OAAO,MAAMA,QAAQ,GAAG,UAAjB","sourcesContent":["export const APP_NAME = 'Membrane';\n"]},"metadata":{},"sourceType":"module"}

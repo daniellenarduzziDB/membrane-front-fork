@@ -1,0 +1,34 @@
+{
+  "linterOptions": {
+    "exclude": ["node_modules/*", "out/", ".next/", "static//"]
+  },
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-airbnb-base",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-react-a11y"
+  ],
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "rules": {
+    "prettier": true,
+    "class-name": true,
+    "interface-name": false,
+    "no-console": ["error", "log"],
+    "no-unused-variable": true,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-pascal-case",
+      "allow-leading-underscore"
+    ],
+    "member-ordering": [false],
+    "ordered-imports": [false],
+    "member-access": [false],
+    "object-literal-sort-keys": false,
+    "arrow-parens": false,
+    "no-magic-numbers": false,
+    "ter-arrow-body-style": false
+  }
+}
